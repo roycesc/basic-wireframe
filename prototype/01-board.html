@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 · Board — From Compare to Board</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+<!-- FW sprite (trimmed for the prototype) — canonical source: assets/sprite.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" class="fw-sprite" aria-hidden="true">
+  <defs>
+    <pattern id="fw-pat-svg-residential" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <path d="M0.5 0 V6" stroke="var(--fw-g700, #4f4f4f)" stroke-width="1"/>
+    </pattern>
+    <pattern id="fw-pat-svg-commercial" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="var(--fw-g100, #f4f4f4)"/>
+      <circle cx="4" cy="4" r="1" fill="var(--fw-g700, #4f4f4f)"/>
+    </pattern>
+    <pattern id="fw-pat-svg-veg" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <circle cx="3" cy="3" r="0.9" fill="var(--fw-g500, #8c8c8c)"/>
+    </pattern>
+    <symbol id="fw-site-mini" viewBox="0 0 160 112">
+      <polygon points="12,18 148,10 152,94 62,104 8,84" fill="none" stroke="var(--fw-g900, #1a1a1a)" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <path d="M0 70 C40 64 120 92 160 84" fill="none" stroke="var(--fw-g300, #d0d0d0)" stroke-width="7"/>
+      <rect x="26" y="26" width="38" height="26" fill="url(#fw-pat-svg-residential)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <polygon points="76,22 132,18 134,44 104,46 102,60 78,62" fill="url(#fw-pat-svg-residential)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <rect x="108" y="58" width="34" height="26" fill="url(#fw-pat-svg-commercial)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <rect x="26" y="60" width="22" height="14" fill="var(--fw-g200, #e3e3e3)" stroke="var(--fw-g400, #b0b0b0)"/>
+      <circle cx="62" cy="86" r="7" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500, #8c8c8c)"/>
+      <circle cx="84" cy="92" r="5" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500, #8c8c8c)"/>
+    </symbol>
+  </defs>
+  <symbol id="fw-i-logo" viewBox="0 0 20 20"><path d="M11.5 5.1 H16.4 Q17 5.1 17 5.7 V14.6 H11.65 V12.45 L15.4 9.9 V9.35 L3 14.5 V10.3 Z" fill="currentColor"/></symbol>
+  <symbol id="fw-i-chevron" viewBox="0 0 20 20"><path d="M5 7.5 L10 12.5 L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-x" viewBox="0 0 20 20"><path d="M5 5 L15 15 M15 5 L5 15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-check" viewBox="0 0 20 20"><path d="M4 10.5 L8.25 14.75 L16 5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-alert" viewBox="0 0 20 20"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M10 3.5 L17.5 16.5 H2.5 Z"/><path d="M10 8.5 V12"/><circle cx="10" cy="14.25" r="0.5" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="fw-i-plus" viewBox="0 0 20 20"><path d="M10 4.5 V15.5 M4.5 10 H15.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-minus" viewBox="0 0 20 20"><path d="M4.5 10 H15.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-dots-h" viewBox="0 0 20 20"><g fill="currentColor"><circle cx="4.5" cy="10" r="1.25"/><circle cx="10" cy="10" r="1.25"/><circle cx="15.5" cy="10" r="1.25"/></g></symbol>
+  <symbol id="fw-i-comment" viewBox="0 0 20 20"><path d="M3.5 4.5 H16.5 V13.5 H9.5 L6 16.5 V13.5 H3.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-sticky" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 4 H16 V11.5 L11.5 16 H4 Z"/><path d="M11.5 16 V11.5 H16"/></g></symbol>
+  <symbol id="fw-i-building" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="3.5" width="9" height="13"/><path d="M5.5 8 H14.5 M5.5 12 H14.5"/></g></symbol>
+  <symbol id="fw-i-library" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4" width="11" height="3"/><rect x="5.5" y="7" width="9" height="9"/><path d="M8.5 10 H11.5"/></g></symbol>
+  <symbol id="fw-i-camera" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6.5" width="14" height="9" rx="1"/><path d="M7 6.5 L8.25 4.5 H11.75 L13 6.5"/><circle cx="10" cy="11" r="2.5"/></g></symbol>
+  <symbol id="fw-i-compare" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3.5" y="3.5" width="5.5" height="5.5"/><rect x="11" y="3.5" width="5.5" height="5.5"/><rect x="3.5" y="11" width="5.5" height="5.5"/><rect x="11" y="11" width="5.5" height="5.5"/></g></symbol>
+  <symbol id="fw-i-history" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.25 7 A6.5 6.5 0 1 1 3.75 11.5"/><path d="M4.25 3.5 V7 H7.75"/><path d="M10.5 7 V10.5 L13.25 12.5"/></g></symbol>
+  <symbol id="fw-i-arrow-left" viewBox="0 0 20 20"><path d="M16.5 10 H4 M8.5 5.5 L4 10 L8.5 14.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-select" viewBox="0 0 20 20"><path d="M6 3.5 L15 9.5 L10.8 10.8 L9 15.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-move" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 V17.5 M2.5 10 H17.5"/><path d="M7.75 4.75 L10 2.5 L12.25 4.75 M7.75 15.25 L10 17.5 L12.25 15.25 M4.75 7.75 L2.5 10 L4.75 12.25 M15.25 7.75 L17.5 10 L15.25 12.25"/></g></symbol>
+  <symbol id="fw-i-pen" viewBox="0 0 20 20"><path d="M4 16 L5.3 11.9 L13.65 3.55 A1.85 1.85 0 0 1 16.45 6.35 L8.1 14.7 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-text" viewBox="0 0 20 20"><path d="M4.5 6 V4 H15.5 V6 M10 4 V16 M7.5 16 H12.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-arrow-ne" viewBox="0 0 20 20"><path d="M4.5 15.5 L15.5 4.5 M9.5 4.5 H15.5 V10.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-shapes" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.75" cy="13" r="3.75"/><rect x="10.5" y="3.5" width="6" height="6"/></g></symbol>
+  <symbol id="fw-i-frame" viewBox="0 0 20 20"><path d="M6.5 2.5 V17.5 M13.5 2.5 V17.5 M2.5 6.5 H17.5 M2.5 13.5 H17.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-gear" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="5.25"/><circle cx="10" cy="10" r="2"/><path d="M10 2.5 V4.75 M10 15.25 V17.5 M2.5 10 H4.75 M15.25 10 H17.5 M4.7 4.7 L6.3 6.3 M13.7 13.7 L15.3 15.3 M15.3 4.7 L13.7 6.3 M6.3 13.7 L4.7 15.3"/></g></symbol>
+  <symbol id="fw-i-share" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="10" r="2"/><circle cx="15" cy="5" r="2"/><circle cx="15" cy="15" r="2"/><path d="M6.8 9.1 L13.2 5.9 M6.8 10.9 L13.2 14.1"/></g></symbol>
+</svg>
+
+<div class="fw-app">
+
+  <!-- App bar -->
+  <header class="fw-appbar">
+    <div class="fw-modswitch">
+      <a class="fw-modswitch__chip" href="../demos/board.html" title="Open the full Board module">
+        <svg class="fw-icon fw-icon--sm"><use href="#fw-i-logo"/></svg>
+        Forma <span class="fw-modswitch__mode">Board</span>
+        <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg>
+      </a>
+    </div>
+    <span class="fw-rule--v"></span>
+    <nav class="fw-breadcrumb">
+      <span class="fw-breadcrumb__item">Nordhavn Waterfront</span>
+      <span class="fw-breadcrumb__sep">/</span>
+      <span class="fw-breadcrumb__current">Board 1</span>
+    </nav>
+    <div class="fw-appbar__spacer"></div>
+    <div class="fw-appbar__actions">
+      <button class="fw-iconbtn" aria-label="Comments"><svg class="fw-icon"><use href="#fw-i-comment"/></svg></button>
+      <button class="fw-iconbtn" aria-label="Board settings"><svg class="fw-icon"><use href="#fw-i-gear"/></svg></button>
+      <div class="fw-avatarstack"><span class="fw-avatar">SR</span><span class="fw-avatar">AK</span><span class="fw-avatar">MB</span></div>
+      <button class="fw-btn fw-btn--sm fw-btn--primary"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-share"/></svg>Share</button>
+    </div>
+  </header>
+
+
+  <div class="fw-app__main">
+
+    <!-- Source rail — Compare is the new entry point -->
+    <nav class="fw-rail fw-rail--labeled">
+      <button class="fw-rail__btn" aria-label="Site Design widgets"><svg class="fw-icon"><use href="#fw-i-building"/></svg><span class="fw-rail__label">Site</span></button>
+      <a class="fw-rail__btn" href="02-decide.html" aria-label="Compare and decide"><svg class="fw-icon"><use href="#fw-i-compare"/></svg><span class="fw-rail__label">Compare</span></a>
+      <button class="fw-rail__btn" aria-label="Data Management"><svg class="fw-icon"><use href="#fw-i-library"/></svg><span class="fw-rail__label">Data</span></button>
+      <button class="fw-rail__btn" aria-label="Images"><svg class="fw-icon"><use href="#fw-i-camera"/></svg><span class="fw-rail__label">Image</span></button>
+    </nav>
+
+    <!-- Board canvas -->
+    <div class="fw-board">
+
+      <!-- Existing board content (matches demos/board.html) -->
+      <div class="fw-boardframe" style="left: 96px; top: 96px; width: 288px; height: 240px;">
+        <span class="fw-boardframe__label">Frame 1 · Proposal 2 — Sun hours · 21 Jun</span>
+        <div class="fw-boardframe__body">
+          <svg viewBox="0 0 160 112" style="width: 100%; height: auto;"><use href="#fw-site-mini"/></svg>
+          <div class="fw-key">
+            <div class="fw-key__row"><span class="fw-swatch fw-fill--residential"></span><span class="fw-key__label fw-text-xs">Residential</span><span class="fw-key__value">9,300 m²</span></div>
+            <div class="fw-key__row"><span class="fw-swatch fw-fill--commercial"></span><span class="fw-key__label fw-text-xs">Commercial</span><span class="fw-key__value">3,100 m²</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fw-boardframe" style="left: 96px; top: 392px; width: 240px; height: 160px;">
+        <span class="fw-boardframe__label">Frame 2 · Key metrics</span>
+        <div class="fw-boardframe__body">
+          <div class="fw-stat-grid">
+            <div class="fw-stat"><span class="fw-stat__value">52%</span><span class="fw-stat__label">Site &gt; 9 h sun</span></div>
+            <div class="fw-stat"><span class="fw-stat__value">1.8</span><span class="fw-stat__label">FAR</span></div>
+            <div class="fw-stat"><span class="fw-stat__value">29</span><span class="fw-stat__label">Units</span></div>
+            <div class="fw-stat"><span class="fw-stat__value">447</span><span class="fw-stat__label">kgCO₂e/m²</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stickies from the working session -->
+      <div class="fw-sticky fw-sticky--tilt fw-board__float" style="left: 96px; top: 600px;">Push the entry to the south corner?</div>
+      <div class="fw-sticky fw-board__float" style="left: 248px; top: 616px;">Check noise by the rail line before review</div>
+
+      <!-- Comment pin -->
+      <div class="fw-commentpin" style="left: 408px; top: 600px;"><span class="fw-avatar">AK</span></div>
+
+      <!-- Board toolbar -->
+      <div class="fw-toolbar">
+        <button class="fw-iconbtn is-active" aria-label="Select"><svg class="fw-icon"><use href="#fw-i-select"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Pan"><svg class="fw-icon"><use href="#fw-i-move"/></svg></button>
+        <span class="fw-rule--v"></span>
+        <button class="fw-iconbtn" aria-label="Sticky note"><svg class="fw-icon"><use href="#fw-i-sticky"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Pen"><svg class="fw-icon"><use href="#fw-i-pen"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Text"><svg class="fw-icon"><use href="#fw-i-text"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Arrow"><svg class="fw-icon"><use href="#fw-i-arrow-ne"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Shapes"><svg class="fw-icon"><use href="#fw-i-shapes"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Frame"><svg class="fw-icon"><use href="#fw-i-frame"/></svg></button>
+        <span class="fw-rule--v"></span>
+        <button class="fw-iconbtn" aria-label="Comment"><svg class="fw-icon"><use href="#fw-i-comment"/></svg></button>
+      </div>
+
+      <!-- Zoom pill -->
+      <div class="fw-zoom">
+        <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Zoom out"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-minus"/></svg></button>
+        <button class="fw-zoom__value">100% <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg></button>
+        <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Zoom in"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/shared.js"></script>
+<script>
+  document.addEventListener('keydown', function (e) {
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    if (e.key === 'ArrowRight') location.href = '02-decide.html';
+  });
+</script>
+</body>
+</html>
