@@ -1636,3 +1636,24 @@ a.fw-card:hover, .fw-card.is-hoverable:hover { border-color: var(--fw-g400); box
   gap: 2px;
 }
 .fw-analyzerow .fw-iconbtn { width: 100%; }
+
+/* ================= Presenter click ring =================
+   Annotation layer for walking someone through a demo: every click
+   flashes a red ring around the clicked control (or the cursor point).
+   The kit's single chromatic element — narration, never product UI.
+   Spawned by shared.js on pointerdown; toggle with `r`. */
+
+.fw-clickring {
+  position: fixed;
+  border: var(--fw-bw-2) solid var(--fw-presenter-ring);
+  border-radius: var(--fw-r-md);
+  pointer-events: none;
+  z-index: var(--fw-z-debug);
+  opacity: 0;
+  animation: fw-clickring 480ms var(--fw-ease) forwards;
+}
+@keyframes fw-clickring {
+  0%   { opacity: 0; transform: scale(0.85); }
+  18%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
