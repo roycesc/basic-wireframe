@@ -3,7 +3,3 @@
 
 # Local tooling config
 .claude/
-
-# Reference captures of the real Autodesk Forma product — local only,
-# kept out of the repo (and its history) in case it ever goes public.
-screenshots/
