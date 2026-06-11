@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-01 · Project hub — Forma Wireframe</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+<!-- FW sprite — canonical copy lives in assets/sprite.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" class="fw-sprite" aria-hidden="true">
+  <defs>
+    <pattern id="fw-pat-svg-residential" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <path d="M0.5 0 V6" stroke="var(--fw-g700, #4f4f4f)" stroke-width="1"/>
+    </pattern>
+    <pattern id="fw-pat-svg-commercial" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="var(--fw-g100, #f4f4f4)"/>
+      <circle cx="4" cy="4" r="1" fill="var(--fw-g700, #4f4f4f)"/>
+    </pattern>
+    <pattern id="fw-pat-svg-parking" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <path d="M0.5 0 V6 M0 0.5 H6" stroke="var(--fw-g600, #6e6e6e)" stroke-width="1"/>
+    </pattern>
+    <pattern id="fw-pat-svg-veg" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <circle cx="3" cy="3" r="0.9" fill="var(--fw-g500, #8c8c8c)"/>
+    </pattern>
+    <pattern id="fw-pat-svg-excluded" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="rgba(255,255,255,0.6)"/>
+      <path d="M0.5 0 V8" stroke="var(--fw-g500, #8c8c8c)" stroke-width="1"/>
+    </pattern>
+    <symbol id="fw-site-mini" viewBox="0 0 160 112">
+      <polygon points="12,18 148,10 152,94 62,104 8,84" fill="none" stroke="var(--fw-g900, #1a1a1a)" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <path d="M0 70 C40 64 120 92 160 84" fill="none" stroke="var(--fw-g300, #d0d0d0)" stroke-width="7"/>
+      <rect x="26" y="26" width="38" height="26" fill="url(#fw-pat-svg-residential)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <polygon points="76,22 132,18 134,44 104,46 102,60 78,62" fill="url(#fw-pat-svg-residential)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <rect x="108" y="58" width="34" height="26" fill="url(#fw-pat-svg-commercial)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <rect x="26" y="60" width="22" height="14" fill="var(--fw-g200, #e3e3e3)" stroke="var(--fw-g400, #b0b0b0)"/>
+      <circle cx="62" cy="86" r="7" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500, #8c8c8c)"/>
+      <circle cx="84" cy="92" r="5" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500, #8c8c8c)"/>
+    </symbol>
+  </defs>
+  <symbol id="fw-i-search" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="9" r="5.25"/><path d="M13 13 L16.5 16.5"/></g></symbol>
+  <symbol id="fw-i-gear" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="5.25"/><circle cx="10" cy="10" r="2"/><path d="M10 2.5 V4.75 M10 15.25 V17.5 M2.5 10 H4.75 M15.25 10 H17.5 M4.7 4.7 L6.3 6.3 M13.7 13.7 L15.3 15.3 M15.3 4.7 L13.7 6.3 M6.3 13.7 L4.7 15.3"/></g></symbol>
+  <symbol id="fw-i-plus" viewBox="0 0 20 20"><path d="M10 4.5 V15.5 M4.5 10 H15.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-grid" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3.5" y="3.5" width="13" height="13"/><path d="M8 3.5 V16.5 M12 3.5 V16.5 M3.5 8 H16.5 M3.5 12 H16.5"/></g></symbol>
+  <symbol id="fw-i-share" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="10" r="2"/><circle cx="15" cy="5" r="2"/><circle cx="15" cy="15" r="2"/><path d="M6.8 9.1 L13.2 5.9 M6.8 10.9 L13.2 14.1"/></g></symbol>
+  <symbol id="fw-i-bookmark" viewBox="0 0 20 20"><path d="M6 3.5 H14 V16.5 L10 13.25 L6 16.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-members" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7.5" cy="6.75" r="2.75"/><path d="M3 16.5 a4.5 4.5 0 0 1 9 0"/><path d="M13.25 9.5 a2.6 2.6 0 1 0 -1.4 -4.9"/><path d="M13.5 12.6 a4 4 0 0 1 3.5 3.9"/></g></symbol>
+  <symbol id="fw-i-help" viewBox="0 0 20 20"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"><circle cx="10" cy="10" r="7"/><path d="M7.9 7.9 a2.1 2.1 0 1 1 3.2 1.8 c-.66.4-1.1.86-1.1 1.7"/><circle cx="10" cy="14.25" r="0.5" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="fw-i-dots-h" viewBox="0 0 20 20"><g fill="currentColor"><circle cx="4.5" cy="10" r="1.25"/><circle cx="10" cy="10" r="1.25"/><circle cx="15.5" cy="10" r="1.25"/></g></symbol>
+  <symbol id="fw-i-x" viewBox="0 0 20 20"><path d="M5 5 L15 15 M15 5 L5 15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-chevron" viewBox="0 0 20 20"><path d="M5 7.5 L10 12.5 L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-pin" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17.5 C10 17.5 4.5 12 4.5 8.25 A5.5 5.5 0 0 1 15.5 8.25 C15.5 12 10 17.5 10 17.5 Z"/><circle cx="10" cy="8.25" r="1.9"/></g></symbol>
+  <symbol id="fw-i-logo" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M10 3 L17.5 17 H2.5 Z"/><path d="M10 8.5 L13.25 14.5 H6.75 Z"/></g></symbol>
+  <symbol id="fw-i-building" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="3.5" width="9" height="13"/><path d="M5.5 8 H14.5 M5.5 12 H14.5"/></g></symbol>
+  <symbol id="fw-i-list" viewBox="0 0 20 20"><path d="M6.5 5.5 H17 M6.5 10 H17 M6.5 14.5 H17 M3 5.5 H3.01 M3 10 H3.01 M3 14.5 H3.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+</svg>
+
+<div class="fw-app">
+
+  <!-- Hub app bar -->
+  <header class="fw-appbar">
+    <a href="../index.html" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 0 8px;">
+      <svg class="fw-icon"><use href="#fw-i-logo"/></svg>
+      <strong class="fw-text-md">Forma</strong>
+    </a>
+    <span class="fw-rule--v"></span>
+    <div class="fw-search" style="width: 320px;">
+      <svg class="fw-icon fw-icon--sm"><use href="#fw-i-search"/></svg>
+      <input class="fw-input" placeholder="Search projects…">
+      <span class="fw-kbd fw-search__kbd">/</span>
+    </div>
+    <div class="fw-appbar__spacer"></div>
+    <div class="fw-appbar__actions">
+      <button class="fw-iconbtn" aria-label="Help"><svg class="fw-icon"><use href="#fw-i-help"/></svg></button>
+      <span class="fw-avatar fw-avatar--md">SR</span>
+    </div>
+  </header>
+
+  <div class="fw-hub">
+    <!-- Hub nav -->
+    <nav class="fw-hub__nav">
+      <a class="fw-hub__navitem is-active" href="dashboard.html"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-grid"/></svg>Projects</a>
+      <a class="fw-hub__navitem" href="#"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-share"/></svg>Shared with me</a>
+      <a class="fw-hub__navitem" href="#"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-bookmark"/></svg>Templates</a>
+      <a class="fw-hub__navitem" href="#"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-members"/></svg>Members</a>
+      <a class="fw-hub__navitem" href="#"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-gear"/></svg>Hub settings</a>
+    </nav>
+
+    <!-- Content -->
+    <main class="fw-hub__content">
+      <div class="fw-hub__titlerow">
+        <h1 class="fw-hub__title">Projects</h1>
+        <span class="fw-badge">12</span>
+        <div class="fw-appbar__spacer"></div>
+        <div class="fw-selectwrap">
+          <select class="fw-select"><option>Last edited</option><option>Name</option><option>Created</option></select>
+          <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg>
+        </div>
+        <div class="fw-seg">
+          <button class="fw-seg__btn is-active" aria-label="Grid view"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-grid"/></svg></button>
+          <button class="fw-seg__btn" aria-label="List view"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-list"/></svg></button>
+        </div>
+        <button class="fw-btn fw-btn--lg fw-btn--primary" data-fw-modal-open="#fw-new-modal"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg>New project</button>
+      </div>
+
+      <div class="fw-hub__grid">
+        <a class="fw-card fw-projcard" href="editor.html">
+          <div class="fw-projcard__thumb"><svg viewBox="0 0 160 112"><use href="#fw-site-mini"/></svg></div>
+          <div class="fw-projcard__body">
+            <span class="fw-projcard__name">Nordhavn Waterfront</span>
+            <span class="fw-projcard__meta">Oslo, NO · Edited 2 d ago</span>
+            <div class="fw-projcard__foot">
+              <div class="fw-avatarstack"><span class="fw-avatar">SR</span><span class="fw-avatar">AK</span><span class="fw-avatar fw-avatar--inverse">+3</span></div>
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+            </div>
+          </div>
+        </a>
+
+        <a class="fw-card fw-projcard" href="#">
+          <div class="fw-projcard__thumb">
+            <svg viewBox="0 0 160 112"><use href="#fw-site-mini" transform="scale(-1,1) translate(-160,0)"/></svg>
+            <span class="fw-badge fw-projcard__badge fw-badge--dot">Terrain processing</span>
+          </div>
+          <div class="fw-projcard__body">
+            <span class="fw-projcard__name">Almagata 3</span>
+            <span class="fw-projcard__meta">Oslo, NO · Created just now</span>
+            <div class="fw-progress" style="margin-top: 4px;"><div class="fw-progress__fill" style="width: 64%"></div></div>
+            <div class="fw-projcard__foot">
+              <div class="fw-avatarstack"><span class="fw-avatar">SR</span></div>
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+            </div>
+          </div>
+        </a>
+
+        <a class="fw-card fw-projcard" href="#">
+          <div class="fw-projcard__thumb">
+            <svg viewBox="0 0 160 112"><use href="#fw-site-mini" transform="rotate(180 80 56)"/></svg>
+            <span class="fw-badge fw-projcard__badge fw-badge--outline">Beta extension</span>
+          </div>
+          <div class="fw-projcard__body">
+            <span class="fw-projcard__name">Seaport District</span>
+            <span class="fw-projcard__meta">Boston, US · Edited 1 w ago</span>
+            <div class="fw-projcard__foot">
+              <div class="fw-avatarstack"><span class="fw-avatar">MB</span><span class="fw-avatar">SR</span></div>
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+            </div>
+          </div>
+        </a>
+
+        <a class="fw-card fw-projcard" href="#">
+          <div class="fw-projcard__thumb">
+            <svg viewBox="0 0 160 112"><use href="#fw-site-mini" transform="scale(1,-1) translate(0,-112)"/></svg>
+            <span class="fw-badge fw-projcard__badge fw-badge--outline">Draft</span>
+          </div>
+          <div class="fw-projcard__body">
+            <span class="fw-projcard__name">Køge Bugt Housing</span>
+            <span class="fw-projcard__meta">Copenhagen, DK · Edited 2 w ago</span>
+            <div class="fw-projcard__foot">
+              <div class="fw-avatarstack"><span class="fw-avatar">AK</span></div>
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+            </div>
+          </div>
+        </a>
+
+        <a class="fw-card fw-projcard" href="#">
+          <div class="fw-projcard__thumb"><svg viewBox="0 0 160 112"><use href="#fw-site-mini" transform="scale(-1,-1) translate(-160,-112)"/></svg></div>
+          <div class="fw-projcard__body">
+            <span class="fw-projcard__name">Hammarby Loop</span>
+            <span class="fw-projcard__meta">Stockholm, SE · Edited 3 w ago</span>
+            <div class="fw-projcard__foot">
+              <div class="fw-avatarstack"><span class="fw-avatar">SR</span><span class="fw-avatar">JL</span></div>
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+            </div>
+          </div>
+        </a>
+
+        <a class="fw-card fw-projcard" href="#">
+          <div class="fw-projcard__thumb"><svg viewBox="0 0 160 112"><use href="#fw-site-mini" transform="rotate(180 80 56) scale(-1,1) translate(-160,0)"/></svg></div>
+          <div class="fw-projcard__body">
+            <span class="fw-projcard__name">Lyon Confluence II</span>
+            <span class="fw-projcard__meta">Lyon, FR · Edited 1 mo ago</span>
+            <div class="fw-projcard__foot">
+              <div class="fw-avatarstack"><span class="fw-avatar">JL</span></div>
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+            </div>
+          </div>
+        </a>
+
+        <button class="fw-card fw-card--new" data-fw-modal-open="#fw-new-modal">
+          <svg class="fw-icon"><use href="#fw-i-plus"/></svg>
+          <span class="fw-text-sm">New project</span>
+        </button>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- New project modal (opens via JS; posed copy documented in the style guide) -->
+<div class="fw-scrim" id="fw-new-modal">
+  <div class="fw-modal" role="dialog" aria-labelledby="fw-new-title">
+    <div class="fw-modal__header">
+      <span class="fw-modal__title" id="fw-new-title">New project</span>
+      <button class="fw-iconbtn" data-fw-modal-close aria-label="Close"><svg class="fw-icon"><use href="#fw-i-x"/></svg></button>
+    </div>
+    <div class="fw-modal__body">
+      <div class="fw-field">
+        <label class="fw-label" for="fw-new-name">Project name</label>
+        <input id="fw-new-name" class="fw-input" placeholder="e.g. Nordhavn Waterfront">
+      </div>
+      <div class="fw-field">
+        <label class="fw-label" for="fw-new-loc">Location</label>
+        <div class="fw-search"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-pin"/></svg><input id="fw-new-loc" class="fw-input" placeholder="Address, area or coordinates"></div>
+      </div>
+      <div class="fw-field">
+        <span class="fw-label">Order data</span>
+        <label class="fw-check-label"><input type="checkbox" class="fw-checkbox" checked> Buildings &amp; terrain</label>
+        <label class="fw-check-label"><input type="checkbox" class="fw-checkbox" checked> Roads</label>
+        <label class="fw-check-label"><input type="checkbox" class="fw-checkbox"> Property boundaries</label>
+      </div>
+    </div>
+    <div class="fw-modal__footer">
+      <button class="fw-btn fw-btn--ghost" data-fw-modal-close>Cancel</button>
+      <a class="fw-btn fw-btn--primary" href="editor.html">Create project</a>
+    </div>
+  </div>
+</div>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

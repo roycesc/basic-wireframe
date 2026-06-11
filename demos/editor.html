@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-02 · Design editor — Forma Wireframe</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+<!-- FW sprite — canonical copy lives in assets/sprite.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" class="fw-sprite" aria-hidden="true">
+  <defs>
+    <pattern id="fw-pat-svg-residential" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <path d="M0.5 0 V6" stroke="var(--fw-g700, #4f4f4f)" stroke-width="1"/>
+    </pattern>
+    <pattern id="fw-pat-svg-commercial" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="var(--fw-g100, #f4f4f4)"/>
+      <circle cx="4" cy="4" r="1" fill="var(--fw-g700, #4f4f4f)"/>
+    </pattern>
+    <pattern id="fw-pat-svg-parking" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <path d="M0.5 0 V6 M0 0.5 H6" stroke="var(--fw-g600, #6e6e6e)" stroke-width="1"/>
+    </pattern>
+    <pattern id="fw-pat-svg-veg" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <circle cx="3" cy="3" r="0.9" fill="var(--fw-g500, #8c8c8c)"/>
+    </pattern>
+    <pattern id="fw-pat-svg-excluded" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="rgba(255,255,255,0.6)"/>
+      <path d="M0.5 0 V8" stroke="var(--fw-g500, #8c8c8c)" stroke-width="1"/>
+    </pattern>
+    <symbol id="fw-site-mini" viewBox="0 0 160 112">
+      <polygon points="12,18 148,10 152,94 62,104 8,84" fill="none" stroke="var(--fw-g900, #1a1a1a)" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <path d="M0 70 C40 64 120 92 160 84" fill="none" stroke="var(--fw-g300, #d0d0d0)" stroke-width="7"/>
+      <rect x="26" y="26" width="38" height="26" fill="url(#fw-pat-svg-residential)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <polygon points="76,22 132,18 134,44 104,46 102,60 78,62" fill="url(#fw-pat-svg-residential)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <rect x="108" y="58" width="34" height="26" fill="url(#fw-pat-svg-commercial)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <rect x="26" y="60" width="22" height="14" fill="var(--fw-g200, #e3e3e3)" stroke="var(--fw-g400, #b0b0b0)"/>
+      <circle cx="62" cy="86" r="7" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500, #8c8c8c)"/>
+      <circle cx="84" cy="92" r="5" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500, #8c8c8c)"/>
+    </symbol>
+  </defs>
+  <symbol id="fw-i-select" viewBox="0 0 20 20"><path d="M6 3.5 L15 9.5 L10.8 10.8 L9 15.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-building" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="3.5" width="9" height="13"/><path d="M5.5 8 H14.5 M5.5 12 H14.5"/></g></symbol>
+  <symbol id="fw-i-line-building" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7.5" width="15" height="6"/><path d="M7.5 7.5 V13.5 M12.5 7.5 V13.5"/></g></symbol>
+  <symbol id="fw-i-house" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9.5 L10 4 L16.5 9.5 V16 H3.5 Z"/><path d="M8.5 16 V12 H11.5 V16"/></g></symbol>
+  <symbol id="fw-i-road" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 17 C7 12.5 6 7.5 7.5 3"/><path d="M12.5 17 C14.5 12.5 13.5 7.5 15 3"/><path d="M8.75 16 C10.5 12 9.75 8 11.25 4" stroke-dasharray="2 3"/></g></symbol>
+  <symbol id="fw-i-tree" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="7.5" r="4"/><path d="M10 11.5 V16.5 M6.5 16.5 H13.5"/></g></symbol>
+  <symbol id="fw-i-terrain" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 12.5 C5.5 9.5 8.5 14 11.5 11 S16 8.5 17.5 9.5"/><path d="M2.5 16.5 C6 13.5 9 17.5 12.5 15 S16.5 13.5 17.5 14"/></g></symbol>
+  <symbol id="fw-i-zone" viewBox="0 0 20 20"><rect x="4" y="4.5" width="12" height="11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-sun" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="3.25"/><path d="M10 3 V5 M10 15 V17 M3 10 H5 M15 10 H17 M5.05 5.05 L6.5 6.5 M13.5 13.5 L14.95 14.95 M14.95 5.05 L13.5 6.5 M6.5 13.5 L5.05 14.95"/></g></symbol>
+  <symbol id="fw-i-daylight" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 14.5 H17"/><path d="M6.5 14.5 A3.5 3.5 0 0 1 13.5 14.5"/><path d="M10 7.5 V5.5 M5.8 9.3 L4.4 7.9 M14.2 9.3 L15.6 7.9"/></g></symbol>
+  <symbol id="fw-i-wind" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 6.5 H11.5 A2.25 2.25 0 1 0 9.25 4.25"/><path d="M3 10.5 H15.5 A2.25 2.25 0 1 1 13.25 12.75"/><path d="M3 14.5 H8.5"/></g></symbol>
+  <symbol id="fw-i-noise" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5 V11.5 H6.5 L10.5 15 V5 L6.5 8.5 Z"/><path d="M13 7.5 A4.5 4.5 0 0 1 13 12.5 M15.25 5.5 A8 8 0 0 1 15.25 14.5"/></g></symbol>
+  <symbol id="fw-i-microclimate" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8.75 4.5 a1.25 1.25 0 0 1 2.5 0 V11 a3 3 0 1 1 -2.5 0 Z"/><path d="M13.5 6 H15.5 M13.5 9 H15.5"/></g></symbol>
+  <symbol id="fw-i-solar" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 7.5 H16.5 L14.5 13.5 H3.5 Z"/><path d="M11 7.5 L9 13.5 M4.5 10.5 H15.5 M8 13.5 V16.5 M12 13.5 V16.5"/></g></symbol>
+  <symbol id="fw-i-carbon" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 C9 4 4.5 8.5 4.5 15.5 C11.5 15.5 16 11 16 4 Z"/><path d="M4.5 15.5 C8 12 11 9 14 6"/></g></symbol>
+  <symbol id="fw-i-layers" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 L16.5 7 L10 10.5 L3.5 7 Z"/><path d="M3.5 10.5 L10 14 L16.5 10.5 M3.5 14 L10 17.5 L16.5 14"/></g></symbol>
+  <symbol id="fw-i-library" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4" width="11" height="3"/><rect x="5.5" y="7" width="9" height="9"/><path d="M8.5 10 H11.5"/></g></symbol>
+  <symbol id="fw-i-puzzle" viewBox="0 0 20 20"><path d="M4.5 7.5 H7.5 V6.25 a2.5 2.5 0 0 1 5 0 V7.5 H15.5 V10.5 H14.25 a2.5 2.5 0 0 0 0 5 H15.5 V16.5 H4.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-members" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7.5" cy="6.75" r="2.75"/><path d="M3 16.5 a4.5 4.5 0 0 1 9 0"/><path d="M13.25 9.5 a2.6 2.6 0 1 0 -1.4 -4.9"/><path d="M13.5 12.6 a4 4 0 0 1 3.5 3.9"/></g></symbol>
+  <symbol id="fw-i-search" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="9" r="5.25"/><path d="M13 13 L16.5 16.5"/></g></symbol>
+  <symbol id="fw-i-gear" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="5.25"/><circle cx="10" cy="10" r="2"/><path d="M10 2.5 V4.75 M10 15.25 V17.5 M2.5 10 H4.75 M15.25 10 H17.5 M4.7 4.7 L6.3 6.3 M13.7 13.7 L15.3 15.3 M15.3 4.7 L13.7 6.3 M6.3 13.7 L4.7 15.3"/></g></symbol>
+  <symbol id="fw-i-eye" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 10 C5 5.5 15 5.5 17.5 10 C15 14.5 5 14.5 2.5 10 Z"/><circle cx="10" cy="10" r="2.25"/></g></symbol>
+  <symbol id="fw-i-eye-off" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 10 C5 5.5 15 5.5 17.5 10 C15 14.5 5 14.5 2.5 10 Z"/><path d="M4.5 15.5 L15.5 4.5"/></g></symbol>
+  <symbol id="fw-i-plus" viewBox="0 0 20 20"><path d="M10 4.5 V15.5 M4.5 10 H15.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-minus" viewBox="0 0 20 20"><path d="M4.5 10 H15.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-compare" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3.5" y="3.5" width="5.5" height="5.5"/><rect x="11" y="3.5" width="5.5" height="5.5"/><rect x="3.5" y="11" width="5.5" height="5.5"/><rect x="11" y="11" width="5.5" height="5.5"/></g></symbol>
+  <symbol id="fw-i-compass" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6.75"/><path d="M10 5.75 L12 12.25 L10 11 L8 12.25 Z"/></g></symbol>
+  <symbol id="fw-i-camera" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6.5" width="14" height="9" rx="1"/><path d="M7 6.5 L8.25 4.5 H11.75 L13 6.5"/><circle cx="10" cy="11" r="2.5"/></g></symbol>
+  <symbol id="fw-i-dots-h" viewBox="0 0 20 20"><g fill="currentColor"><circle cx="4.5" cy="10" r="1.25"/><circle cx="10" cy="10" r="1.25"/><circle cx="15.5" cy="10" r="1.25"/></g></symbol>
+  <symbol id="fw-i-x" viewBox="0 0 20 20"><path d="M5 5 L15 15 M15 5 L5 15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-chevron" viewBox="0 0 20 20"><path d="M5 7.5 L10 12.5 L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-comment" viewBox="0 0 20 20"><path d="M3.5 4.5 H16.5 V13.5 H9.5 L6 16.5 V13.5 H3.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-share" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="10" r="2"/><circle cx="15" cy="5" r="2"/><circle cx="15" cy="15" r="2"/><path d="M6.8 9.1 L13.2 5.9 M6.8 10.9 L13.2 14.1"/></g></symbol>
+  <symbol id="fw-i-play" viewBox="0 0 20 20"><path d="M7 5 L15 10 L7 15 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-inspect" viewBox="0 0 20 20"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"><circle cx="10" cy="10" r="4.25"/><path d="M10 2.5 V5 M10 15 V17.5 M2.5 10 H5 M15 10 H17.5"/><circle cx="10" cy="10" r="1" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="fw-i-check" viewBox="0 0 20 20"><path d="M4 10.5 L8.25 14.75 L16 5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-calendar" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3.5" y="5" width="13" height="11.5" rx="1"/><path d="M3.5 9 H16.5 M7 3 V6.5 M13 3 V6.5 M6.5 12.5 H8 M12 12.5 H13.5"/></g></symbol>
+  <symbol id="fw-i-alert" viewBox="0 0 20 20"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M10 3.5 L17.5 16.5 H2.5 Z"/><path d="M10 8.5 V12"/><circle cx="10" cy="14.25" r="0.5" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="fw-i-arrow-left" viewBox="0 0 20 20"><path d="M16.5 10 H4 M8.5 5.5 L4 10 L8.5 14.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-grid" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3.5" y="3.5" width="13" height="13"/><path d="M8 3.5 V16.5 M12 3.5 V16.5 M3.5 8 H16.5 M3.5 12 H16.5"/></g></symbol>
+  <symbol id="fw-i-bookmark" viewBox="0 0 20 20"><path d="M6 3.5 H14 V16.5 L10 13.25 L6 16.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-sticky" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 4 H16 V11.5 L11.5 16 H4 Z"/><path d="M11.5 16 V11.5 H16"/></g></symbol>
+  <symbol id="fw-i-pen" viewBox="0 0 20 20"><path d="M4 16 L5.3 11.9 L13.65 3.55 A1.85 1.85 0 0 1 16.45 6.35 L8.1 14.7 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-move" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 V17.5 M2.5 10 H17.5"/><path d="M7.75 4.75 L10 2.5 L12.25 4.75 M7.75 15.25 L10 17.5 L12.25 15.25 M4.75 7.75 L2.5 10 L4.75 12.25 M15.25 7.75 L17.5 10 L15.25 12.25"/></g></symbol>
+  <symbol id="fw-i-frame" viewBox="0 0 20 20"><path d="M6.5 2.5 V17.5 M13.5 2.5 V17.5 M2.5 6.5 H17.5 M2.5 13.5 H17.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-text" viewBox="0 0 20 20"><path d="M4.5 6 V4 H15.5 V6 M10 4 V16 M7.5 16 H12.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-arrow-ne" viewBox="0 0 20 20"><path d="M4.5 15.5 L15.5 4.5 M9.5 4.5 H15.5 V10.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-shapes" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.75" cy="13" r="3.75"/><rect x="10.5" y="3.5" width="6" height="6"/></g></symbol>
+  <symbol id="fw-i-help" viewBox="0 0 20 20"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"><circle cx="10" cy="10" r="7"/><path d="M7.9 7.9 a2.1 2.1 0 1 1 3.2 1.8 c-.66.4-1.1.86-1.1 1.7"/><circle cx="10" cy="14.25" r="0.5" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="fw-i-sliders" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 6 H5.75 M9.25 6 H17"/><circle cx="7.5" cy="6" r="1.75"/><path d="M3 10.5 H10.75 M14.25 10.5 H17"/><circle cx="12.5" cy="10.5" r="1.75"/><path d="M3 15 H4.25 M7.75 15 H17"/><circle cx="6" cy="15" r="1.75"/></g></symbol>
+  <symbol id="fw-i-export" viewBox="0 0 20 20"><path d="M10 3.5 V12.5 M6 9 L10 13 L14 9 M4 16.5 H16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-history" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.25 7 A6.5 6.5 0 1 1 3.75 11.5"/><path d="M4.25 3.5 V7 H7.75"/><path d="M10.5 7 V10.5 L13.25 12.5"/></g></symbol>
+  <symbol id="fw-i-pin" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17.5 C10 17.5 4.5 12 4.5 8.25 A5.5 5.5 0 0 1 15.5 8.25 C15.5 12 10 17.5 10 17.5 Z"/><circle cx="10" cy="8.25" r="1.9"/></g></symbol>
+  <symbol id="fw-i-logo" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M10 3 L17.5 17 H2.5 Z"/><path d="M10 8.5 L13.25 14.5 H6.75 Z"/></g></symbol>
+  <symbol id="fw-i-panel" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="4" width="14" height="12" rx="1"/><path d="M7.5 4 V16"/></g></symbol>
+  <symbol id="fw-i-ruler" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 L13 3 L17 7 L7 17 Z"/><path d="M6.25 13.75 L7.75 12.25 M9.25 10.75 L10.75 9.25 M12.25 7.75 L13.75 6.25"/></g></symbol>
+</svg>
+
+<div class="fw-app">
+
+  <!-- Trial banner -->
+  <div class="fw-banner">
+    <span>14 days left of trial</span><a href="#">Set licence</a>
+    <button class="fw-banner__x" aria-label="Dismiss"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-x"/></svg></button>
+  </div>
+
+  <!-- App bar -->
+  <header class="fw-appbar">
+    <div class="fw-modswitch">
+      <button class="fw-modswitch__chip" data-fw-flyout>
+        <svg class="fw-icon fw-icon--sm"><use href="#fw-i-logo"/></svg>
+        Forma <span class="fw-modswitch__mode">Site Design</span>
+        <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg>
+      </button>
+      <div class="fw-modswitch__flyout">
+        <div class="fw-menu__label">Available in this project</div>
+        <div class="fw-modswitch__grid">
+          <a class="fw-modcard is-active" href="editor.html">
+            <div class="fw-modcard__head"><svg class="fw-icon"><use href="#fw-i-building"/></svg><span class="fw-badge">Current</span></div>
+            <span class="fw-modcard__name">Site Design</span>
+            <span class="fw-modcard__desc">Explore and design proposals on the site</span>
+          </a>
+          <a class="fw-modcard" href="#">
+            <div class="fw-modcard__head"><svg class="fw-icon"><use href="#fw-i-grid"/></svg><span class="fw-badge fw-badge--outline">Beta</span></div>
+            <span class="fw-modcard__name">Building Design</span>
+            <span class="fw-modcard__desc">Bring buildings to higher LOD</span>
+          </a>
+          <a class="fw-modcard" href="board.html">
+            <div class="fw-modcard__head"><svg class="fw-icon"><use href="#fw-i-sticky"/></svg></div>
+            <span class="fw-modcard__name">Board</span>
+            <span class="fw-modcard__desc">Collaborative whiteboard</span>
+          </a>
+          <a class="fw-modcard" href="compare.html">
+            <div class="fw-modcard__head"><svg class="fw-icon"><use href="#fw-i-compare"/></svg></div>
+            <span class="fw-modcard__name">Compare</span>
+            <span class="fw-modcard__desc">Evaluate designs side by side</span>
+          </a>
+        </div>
+        <hr class="fw-menu__rule">
+        <a class="fw-menu__item" href="dashboard.html"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-library"/></svg>Data Management</a>
+        <a class="fw-menu__item" href="#"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-carbon"/></svg>Carbon Insights</a>
+        <a class="fw-menu__item" href="#"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-gear"/></svg>Project Admin</a>
+      </div>
+    </div>
+    <span class="fw-rule--v"></span>
+    <nav class="fw-breadcrumb">
+      <a class="fw-breadcrumb__item" href="dashboard.html">Nordhavn Waterfront</a>
+      <span class="fw-breadcrumb__sep">/</span>
+      <span class="fw-breadcrumb__current">Proposal 2 — Courtyard <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg></span>
+    </nav>
+    <div class="fw-appbar__spacer"></div>
+    <div class="fw-appbar__actions">
+      <button class="fw-btn fw-btn--sm fw-btn--secondary"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-share"/></svg>Share</button>
+      <button class="fw-iconbtn" aria-label="Comments"><svg class="fw-icon"><use href="#fw-i-comment"/></svg></button>
+      <button class="fw-iconbtn" aria-label="Help"><svg class="fw-icon"><use href="#fw-i-help"/></svg></button>
+      <div class="fw-avatarstack"><span class="fw-avatar">SR</span><span class="fw-avatar">AK</span><span class="fw-avatar fw-avatar--inverse">+3</span></div>
+    </div>
+  </header>
+
+  <div class="fw-app__main">
+
+    <!-- Icon rail -->
+    <nav class="fw-rail">
+      <button class="fw-rail__btn is-active" aria-label="Navigator"><svg class="fw-icon"><use href="#fw-i-layers"/></svg></button>
+      <button class="fw-rail__btn" aria-label="Library"><svg class="fw-icon"><use href="#fw-i-library"/></svg></button>
+      <button class="fw-rail__btn" aria-label="Extensions"><svg class="fw-icon"><use href="#fw-i-puzzle"/></svg></button>
+      <button class="fw-rail__btn" aria-label="Members"><svg class="fw-icon"><use href="#fw-i-members"/></svg></button>
+      <div class="fw-rail__spacer"></div>
+      <button class="fw-rail__btn" aria-label="Quick access ( / )"><svg class="fw-icon"><use href="#fw-i-search"/></svg></button>
+    </nav>
+
+    <!-- Left panel: Navigator -->
+    <aside class="fw-panel fw-panel--left">
+      <div class="fw-panel__header">
+        <span class="fw-panel__title">Navigator</span>
+        <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Settings"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-gear"/></svg></button>
+        <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Collapse panel"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-panel"/></svg></button>
+      </div>
+      <div class="fw-panel__body">
+        <div class="fw-panel__section">
+          <div class="fw-panel__sectiontitle">Proposals <button class="fw-rowbtn" aria-label="New proposal"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg></button></div>
+          <div class="fw-tree">
+            <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg><span class="fw-tree__label">Proposal 1 — Baseline</span><span class="fw-tree__actions"><button class="fw-rowbtn" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button></span></div>
+            <div class="fw-tree__row is-selected"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg><span class="fw-tree__label">Proposal 2 — Courtyard</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button></span></div>
+            <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg><span class="fw-tree__label">Proposal 3 — Towers</span><span class="fw-tree__actions"><button class="fw-rowbtn" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button></span></div>
+          </div>
+        </div>
+        <div class="fw-panel__section">
+          <div class="fw-panel__sectiontitle">Layers <button class="fw-rowbtn" aria-label="Edit base"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-gear"/></svg></button></div>
+          <div class="fw-tree">
+            <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-zone"/></svg><span class="fw-tree__label">Site limit</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="Hide"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-eye"/></svg></button></span></div>
+            <details open>
+              <summary class="fw-tree__row"><svg class="fw-icon fw-icon--sm fw-tree__caret"><use href="#fw-i-chevron"/></svg><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg><span class="fw-tree__label">Buildings</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="Hide"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-eye"/></svg></button></span></summary>
+              <div class="fw-tree__children">
+                <div class="fw-tree__row"><span class="fw-tree__label">Building 01</span><span class="fw-funcchip"><span class="fw-swatch fw-fill--residential"></span></span></div>
+                <div class="fw-tree__row"><span class="fw-tree__label">Building 02</span><span class="fw-funcchip"><span class="fw-swatch fw-fill--residential"></span></span></div>
+                <div class="fw-tree__row is-selected"><span class="fw-tree__label">Building 03</span><span class="fw-funcchip"><span class="fw-swatch fw-fill--commercial"></span></span></div>
+                <div class="fw-tree__row"><span class="fw-tree__label">Building 04</span><span class="fw-funcchip"><span class="fw-swatch fw-fill--residential"></span></span></div>
+              </div>
+            </details>
+            <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-tree"/></svg><span class="fw-tree__label">Vegetation</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="Show"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-eye"/></svg></button></span></div>
+            <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-road"/></svg><span class="fw-tree__label">Transportation</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="Show"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-eye"/></svg></button></span></div>
+            <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-terrain"/></svg><span class="fw-tree__label">Terrain</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="Hidden"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-eye-off"/></svg></button></span></div>
+          </div>
+        </div>
+        <div class="fw-panel__section">
+          <div class="fw-panel__sectiontitle">Base</div>
+          <div class="fw-field-row"><label>Existing context</label>
+            <div class="fw-selectwrap"><select class="fw-select fw-select--sm fw-select--bare"><option>Base 1 — OSM</option><option>Base 2 — survey</option></select><svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Canvas -->
+    <div class="fw-canvas">
+
+      <!-- Axonometric scene (scenery: 2:1 dimetric, x→(16,8), y→(−16,8), z→(0,−8) per unit) -->
+      <svg class="fw-canvas__scene" viewBox="0 0 960 640" preserveAspectRatio="xMidYMid meet" aria-label="Site model">
+        <!-- roads -->
+        <path d="M32 240 L480 464" stroke="var(--fw-g200)" stroke-width="26" fill="none"/>
+        <path d="M32 240 L480 464" stroke="var(--fw-g400)" stroke-width="1.5" stroke-dasharray="8 8" fill="none"/>
+        <path d="M880 120 L384 368" stroke="var(--fw-g200)" stroke-width="26" fill="none"/>
+        <path d="M880 120 L384 368" stroke="var(--fw-g400)" stroke-width="1.5" stroke-dasharray="8 8" fill="none"/>
+        <!-- terrain contours -->
+        <path d="M40 560 C220 480 420 600 640 540 S900 560 950 520" stroke="var(--fw-g300)" stroke-width="1.5" fill="none"/>
+        <path d="M20 610 C240 540 460 640 700 590 S920 610 950 580" stroke="var(--fw-g300)" stroke-width="1.5" fill="none"/>
+        <!-- site limit -->
+        <polygon points="416,176 672,240 576,352 368,328 272,232" fill="none" stroke="var(--fw-g900)" stroke-width="2" stroke-dasharray="8 5"/>
+        <!-- parking pad -->
+        <polygon points="416,304 448,320 416,336 384,320" fill="url(#fw-pat-svg-parking)" stroke="var(--fw-g500)"/>
+
+        <!-- context buildings (existing, muted) -->
+        <g>
+          <polygon points="384,80 432,104 384,128 336,104" fill="var(--fw-g200)"/>
+          <polygon points="432,152 384,176 384,128 432,104" fill="var(--fw-g300)"/>
+          <polygon points="336,152 384,176 384,128 336,104" fill="var(--fw-g400)"/>
+        </g>
+        <g>
+          <polygon points="224,144 256,160 192,192 160,176" fill="var(--fw-g200)"/>
+          <polygon points="256,192 192,224 192,192 256,160" fill="var(--fw-g300)"/>
+          <polygon points="160,208 192,224 192,192 160,176" fill="var(--fw-g400)"/>
+        </g>
+        <g>
+          <polygon points="736,192 784,216 752,232 704,208" fill="var(--fw-g200)"/>
+          <polygon points="784,280 752,296 752,232 784,216" fill="var(--fw-g300)"/>
+          <polygon points="704,272 752,296 752,232 704,208" fill="var(--fw-g400)"/>
+        </g>
+        <g>
+          <polygon points="672,280 704,296 656,320 624,304" fill="var(--fw-g200)"/>
+          <polygon points="704,352 656,376 656,320 704,296" fill="var(--fw-g300)"/>
+          <polygon points="624,360 656,376 656,320 624,304" fill="var(--fw-g400)"/>
+        </g>
+        <g>
+          <polygon points="480,328 512,344 480,360 448,344" fill="var(--fw-g200)"/>
+          <polygon points="512,384 480,400 480,360 512,344" fill="var(--fw-g300)"/>
+          <polygon points="448,384 480,400 480,360 448,344" fill="var(--fw-g400)"/>
+        </g>
+
+        <!-- proposal buildings -->
+        <!-- B01 residential slab -->
+        <g stroke="var(--fw-g700)" stroke-width="1">
+          <polygon points="416,168 480,200 448,216 384,184" fill="url(#fw-pat-svg-residential)"/>
+          <polygon points="480,240 448,256 448,216 480,200" fill="var(--fw-g200)"/>
+          <polygon points="384,224 448,256 448,216 384,184" fill="var(--fw-g400)"/>
+        </g>
+        <!-- B02 residential slab -->
+        <g stroke="var(--fw-g700)" stroke-width="1">
+          <polygon points="448,208 512,240 480,256 416,224" fill="url(#fw-pat-svg-residential)"/>
+          <polygon points="512,288 480,304 480,256 512,240" fill="var(--fw-g200)"/>
+          <polygon points="416,272 480,304 480,256 416,224" fill="var(--fw-g400)"/>
+        </g>
+        <!-- B04 residential row -->
+        <g stroke="var(--fw-g700)" stroke-width="1">
+          <polygon points="384,248 464,288 440,300 360,260" fill="url(#fw-pat-svg-residential)"/>
+          <polygon points="464,312 440,324 440,300 464,288" fill="var(--fw-g200)"/>
+          <polygon points="360,284 440,324 440,300 360,260" fill="var(--fw-g400)"/>
+        </g>
+        <!-- B03 commercial tower — SELECTED -->
+        <g stroke="var(--fw-g700)" stroke-width="1">
+          <polygon points="576,176 608,192 576,208 544,192" fill="url(#fw-pat-svg-commercial)"/>
+          <polygon points="608,272 576,288 576,208 608,192" fill="var(--fw-g200)"/>
+          <polygon points="544,272 576,288 576,208 544,192" fill="var(--fw-g400)"/>
+        </g>
+        <polygon points="576,176 608,192 608,272 576,288 544,272 544,192" fill="none" stroke="var(--fw-g1000)" stroke-width="2"/>
+        <!-- selection handles -->
+        <g fill="var(--fw-g0)" stroke="var(--fw-g1000)" stroke-width="1">
+          <rect x="572" y="172" width="8" height="8"/>
+          <rect x="604" y="188" width="8" height="8"/>
+          <rect x="540" y="188" width="8" height="8"/>
+          <rect x="572" y="204" width="8" height="8"/>
+        </g>
+        <!-- snap line: B03 right edge aligned with context block above -->
+        <g stroke="var(--fw-g900)" stroke-width="1" stroke-dasharray="4 4">
+          <line x1="608" y1="120" x2="608" y2="272"/>
+        </g>
+        <g fill="var(--fw-g900)">
+          <rect x="605.5" y="117.5" width="5" height="5"/>
+          <rect x="605.5" y="269.5" width="5" height="5"/>
+        </g>
+        <!-- dimension chip rides the selection -->
+        <foreignObject x="620" y="148" width="96" height="32">
+          <span class="fw-dim">24.0 m</span>
+        </foreignObject>
+        <!-- trees -->
+        <circle cx="332" cy="296" r="10" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500)"/>
+        <circle cx="306" cy="276" r="7" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500)"/>
+        <circle cx="510" cy="330" r="8" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500)"/>
+      </svg>
+
+      <!-- Design toolbar: Buildings flyout posed open -->
+      <div class="fw-toolbar">
+        <button class="fw-iconbtn" aria-label="Select"><svg class="fw-icon"><use href="#fw-i-select"/></svg></button>
+        <span class="fw-rule--v"></span>
+        <div class="fw-toolbar__tool is-open">
+          <button class="fw-iconbtn is-active" data-fw-flyout aria-label="Buildings"><svg class="fw-icon"><use href="#fw-i-building"/></svg></button>
+          <div class="fw-toolbar__flyout">
+            <div class="fw-menu">
+              <button class="fw-menu__item is-active"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg>Basic building<span class="fw-kbd">B</span></button>
+              <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-line-building"/></svg>Line building</button>
+              <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-house"/></svg>House</button>
+              <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-shapes"/></svg>3D sketch</button>
+            </div>
+          </div>
+        </div>
+        <button class="fw-iconbtn" aria-label="Limits"><svg class="fw-icon"><use href="#fw-i-zone"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Roads (T)"><svg class="fw-icon"><use href="#fw-i-road"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Vegetation"><svg class="fw-icon"><use href="#fw-i-tree"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Terrain"><svg class="fw-icon"><use href="#fw-i-terrain"/></svg></button>
+        <span class="fw-rule--v"></span>
+        <button class="fw-iconbtn" aria-label="Site automation"><svg class="fw-icon"><use href="#fw-i-grid"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Measure"><svg class="fw-icon"><use href="#fw-i-ruler"/></svg></button>
+      </div>
+
+      <!-- Viewport toolbar -->
+      <div class="fw-viewbar">
+        <div class="fw-seg fw-seg--sm"><button class="fw-seg__btn">2D</button><button class="fw-seg__btn is-active">3D</button></div>
+        <span class="fw-rule--v"></span>
+        <button class="fw-iconbtn" aria-label="North up"><svg class="fw-icon"><use href="#fw-i-compass"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Camera positions"><svg class="fw-icon"><use href="#fw-i-camera"/></svg></button>
+        <button class="fw-iconbtn" aria-label="Display options"><svg class="fw-icon"><use href="#fw-i-sliders"/></svg></button>
+        <span class="fw-rule--v"></span>
+        <div class="fw-seg fw-seg--sm"><button class="fw-seg__btn is-active">Map</button><button class="fw-seg__btn">Sat</button></div>
+      </div>
+
+      <div class="fw-canvas__attr">Wireframe scenery · not real map data</div>
+    </div>
+
+    <!-- Right panel: selection properties + metrics + analyze -->
+    <aside class="fw-panel fw-panel--right">
+      <div class="fw-panel__header">
+        <span class="fw-panel__title"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg>Building 03</span>
+        <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Close"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-x"/></svg></button>
+      </div>
+      <div class="fw-panel__body">
+        <div class="fw-panel__section" style="padding-bottom: 0;">
+          <div class="fw-tabs fw-tabs--sm" data-fw-tabs="#fw-bldg-tabs">
+            <button class="fw-tabs__tab is-active" data-fw-tab="props" aria-selected="true">Properties</button>
+            <button class="fw-tabs__tab" data-fw-tab="units" aria-selected="false">Units</button>
+            <button class="fw-tabs__tab" data-fw-tab="parking" aria-selected="false">Parking</button>
+          </div>
+        </div>
+        <div id="fw-bldg-tabs">
+          <div class="fw-panel__section" data-fw-tabpanel="props">
+            <div class="fw-field-row">
+              <label>Function</label>
+              <div class="fw-selectwrap">
+                <select class="fw-select fw-select--sm"><option>Commercial</option><option>Residential</option><option>Unspecified</option></select>
+                <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg>
+              </div>
+            </div>
+            <div class="fw-field-row"><label>Applied to</label><span class="fw-funcchip"><span class="fw-swatch fw-fill--commercial"></span>All floors</span></div>
+            <div class="fw-field-row">
+              <label>Floors</label>
+              <div class="fw-stepper fw-stepper--sm">
+                <button class="fw-stepper__btn" aria-label="Fewer"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-minus"/></svg></button>
+                <input class="fw-stepper__value" value="8">
+                <button class="fw-stepper__btn" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg></button>
+              </div>
+            </div>
+            <div class="fw-field-row">
+              <label>Floor height</label>
+              <div class="fw-stepper fw-stepper--sm">
+                <button class="fw-stepper__btn" aria-label="Lower"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-minus"/></svg></button>
+                <input class="fw-stepper__value" value="3.0 m">
+                <button class="fw-stepper__btn" aria-label="Higher"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg></button>
+              </div>
+            </div>
+            <div class="fw-field-row"><label>Height</label><span class="fw-mono fw-text-sm">24.0 m</span></div>
+            <div class="fw-field-row"><label>Flat roof</label><button class="fw-switch" role="switch" aria-checked="true" aria-label="Flat roof"></button></div>
+          </div>
+          <div class="fw-panel__section" data-fw-tabpanel="units" hidden>
+            <div class="fw-metric"><span class="fw-metric__label">Units total</span><span class="fw-metric__value">29</span><span class="fw-metric__pct"></span></div>
+            <div class="fw-metric fw-metric--sub"><span class="fw-metric__label">&gt; 85 m²</span><span class="fw-metric__value">29</span><span class="fw-metric__pct">100%</span></div>
+          </div>
+          <div class="fw-panel__section" data-fw-tabpanel="parking" hidden>
+            <div class="fw-metric"><span class="fw-metric__label">Parking spots</span><span class="fw-metric__value">24</span><span class="fw-metric__pct"></span></div>
+            <div class="fw-metric fw-metric--sub"><span class="fw-metric__label">Driveway access</span><span class="fw-metric__value">2</span><span class="fw-metric__pct"></span></div>
+          </div>
+        </div>
+        <details class="fw-panel__details fw-panel__section" open>
+          <summary>Area metrics <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg></summary>
+          <div class="fw-metrics" style="padding-top: 8px;">
+            <div class="fw-metric fw-metric--head"><span class="fw-metric__label">Gross floor area</span><span class="fw-metric__value">12,400 m²</span><span class="fw-metric__pct">100%</span></div>
+            <div class="fw-metric fw-metric--sub"><span class="fw-metric__label"><span class="fw-swatch fw-fill--residential"></span>Residential</span><span class="fw-metric__value">9,300 m²</span><span class="fw-metric__pct">75%</span></div>
+            <div class="fw-metric fw-metric--sub"><span class="fw-metric__label"><span class="fw-swatch fw-fill--commercial"></span>Commercial</span><span class="fw-metric__value">3,100 m²</span><span class="fw-metric__pct">25%</span></div>
+            <div class="fw-metric"><span class="fw-metric__label">Building coverage</span><span class="fw-metric__value">2,840 m²</span><span class="fw-metric__pct">23%</span></div>
+            <div class="fw-metric"><span class="fw-metric__label">Floor area ratio</span><span class="fw-metric__value">1.8</span><span class="fw-metric__pct"></span></div>
+            <div class="fw-metric"><span class="fw-metric__label">Rentable area</span><span class="fw-metric__value">10,540 m²</span><span class="fw-metric__pct">85%</span></div>
+          </div>
+        </details>
+        <div class="fw-panel__section">
+          <div class="fw-panel__sectiontitle">Analyze</div>
+          <div class="fw-analyzerow">
+            <button class="fw-iconbtn is-active" aria-label="Area metrics"><svg class="fw-icon"><use href="#fw-i-grid"/></svg></button>
+            <a class="fw-iconbtn" href="analysis.html" aria-label="Sun hours"><svg class="fw-icon"><use href="#fw-i-sun"/></svg></a>
+            <button class="fw-iconbtn" aria-label="Daylight potential"><svg class="fw-icon"><use href="#fw-i-daylight"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Wind"><svg class="fw-icon"><use href="#fw-i-wind"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Noise"><svg class="fw-icon"><use href="#fw-i-noise"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Microclimate"><svg class="fw-icon"><use href="#fw-i-microclimate"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Solar energy"><svg class="fw-icon"><use href="#fw-i-solar"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Embodied carbon"><svg class="fw-icon"><use href="#fw-i-carbon"/></svg></button>
+          </div>
+          <span class="fw-caption">Rapid analyses update live with every edit. Open <a class="fw-link" href="analysis.html">Sun hours</a> for the detailed run.</span>
+        </div>
+      </div>
+      <div class="fw-panel__footer">
+        <button class="fw-btn fw-btn--secondary fw-btn--block"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-history"/></svg>View history</button>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

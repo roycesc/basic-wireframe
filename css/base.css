@@ -1,0 +1,123 @@
+/* ============================================================
+   FW — Base: reset, type defaults, focus, scrollbars, debug grid
+   No raw color values here except neutral black/white alphas.
+   ============================================================ */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html { height: 100%; }
+
+body {
+  height: 100%;
+  font-family: var(--fw-font-ui);
+  font-size: var(--fw-fs-md);
+  line-height: var(--fw-lh-md);
+  color: var(--fw-ink);
+  background: var(--fw-bg-app);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, video, canvas { display: block; max-width: 100%; }
+
+input, button, textarea, select { font: inherit; color: inherit; }
+
+button { background: none; border: 0; padding: 0; cursor: pointer; }
+
+a { color: inherit; }
+
+h1, h2, h3, h4 { font-weight: var(--fw-fw-semibold); }
+
+p { overflow-wrap: break-word; }
+
+ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
+
+summary { cursor: pointer; }
+summary::-webkit-details-marker { display: none; }
+summary { list-style: none; }
+
+/* ---- Focus ---------------------------------------------------- */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--fw-ring);
+  border-radius: var(--fw-r-sm);
+}
+
+::selection { background: var(--fw-g900); color: var(--fw-g0); }
+
+/* ---- Scrollbars (WebKit + Firefox) ----------------------------- */
+* { scrollbar-width: thin; scrollbar-color: var(--fw-g300) transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: var(--fw-g300); border-radius: var(--fw-r-full); }
+*::-webkit-scrollbar-thumb:hover { background: var(--fw-g400); }
+*::-webkit-scrollbar-track { background: transparent; }
+
+/* ---- Type helpers ----------------------------------------------- */
+.fw-mono { font-family: var(--fw-font-mono); font-variant-numeric: tabular-nums; }
+
+.fw-caps {
+  font-size: var(--fw-fs-xs);
+  line-height: var(--fw-lh-xs);
+  font-weight: var(--fw-fw-semibold);
+  letter-spacing: var(--fw-track-caps);
+  text-transform: uppercase;
+}
+
+.fw-muted { color: var(--fw-ink-2); }
+.fw-faint { color: var(--fw-ink-3); }
+
+.fw-text-xs { font-size: var(--fw-fs-xs); line-height: var(--fw-lh-xs); }
+.fw-text-sm { font-size: var(--fw-fs-sm); line-height: var(--fw-lh-sm); }
+.fw-text-md { font-size: var(--fw-fs-md); line-height: var(--fw-lh-md); }
+.fw-text-lg { font-size: var(--fw-fs-lg); line-height: var(--fw-lh-lg); }
+
+/* Visually hidden (a11y) */
+.fw-sr {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* The hidden in-page icon sprite */
+.fw-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ---- 8px debug grid overlay -------------------------------------
+   Toggled by pressing `g` (shared.js adds .fw-debug-grid to body),
+   or by the CSS-only checkbox demo on the style guide.
+   Baseline rows every 8px + faint columns every 8px.              */
+body.fw-debug-grid::after,
+.sg-grid-toggle:checked ~ .sg-grid-overlay {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--fw-z-debug);
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(to right,  rgba(0, 0, 0, 0.03) 0 1px, transparent 1px 8px);
+}
+
+.sg-grid-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--fw-z-debug);
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(to right,  rgba(0, 0, 0, 0.03) 0 1px, transparent 1px 8px);
+}
+.sg-grid-toggle:checked ~ .sg-grid-overlay { display: block; }
+
+/* ---- Motion ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

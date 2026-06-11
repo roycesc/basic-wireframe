@@ -1,0 +1,136 @@
+/* ============================================================
+   FW — Forma Wireframe Kit · Design Tokens
+   ------------------------------------------------------------
+   The single source of truth. This is the ONLY file in the kit
+   permitted to contain raw color values, and every value is
+   grayscale (R = G = B) or a neutral black/white alpha.
+
+   Grid: 8px base. 4px and 12px are sanctioned half-steps,
+   allowed only INSIDE components (icon gaps, chip padding).
+   Component heights, row heights and layout gaps land on 8.
+   ============================================================ */
+
+:root {
+  /* ---- Grayscale ramp ------------------------------------- */
+  --fw-g0:    #ffffff;
+  --fw-g50:   #fafafa;
+  --fw-g100:  #f4f4f4;
+  --fw-g150:  #ececec;
+  --fw-g200:  #e3e3e3;
+  --fw-g300:  #d0d0d0;
+  --fw-g400:  #b0b0b0;
+  --fw-g500:  #8c8c8c;
+  --fw-g600:  #6e6e6e;   /* minimum AA text on white */
+  --fw-g700:  #4f4f4f;
+  --fw-g800:  #303030;
+  --fw-g900:  #1a1a1a;
+  --fw-g1000: #000000;
+
+  /* ---- Semantic aliases ------------------------------------
+     Components reference ONLY these aliases or ramp steps.   */
+  --fw-bg-app:      var(--fw-g0);
+  --fw-bg-canvas:   var(--fw-g100);
+  --fw-bg-sunken:   var(--fw-g100);
+  --fw-bg-hover:    var(--fw-g100);
+  --fw-bg-selected: var(--fw-g150);
+  --fw-bg-inverse:  var(--fw-g900);
+  --fw-ink:         var(--fw-g900);
+  --fw-ink-2:       var(--fw-g600);
+  --fw-ink-3:       var(--fw-g400);
+  --fw-ink-inverse: var(--fw-g0);
+  --fw-line:        var(--fw-g200);
+  --fw-line-strong: var(--fw-g300);
+  --fw-line-emphasis: var(--fw-g900);
+  --fw-scrim:       rgba(0, 0, 0, 0.4);
+  --fw-scrim-light: rgba(255, 255, 255, 0.6);  /* "excluded" overlay base */
+
+  /* ---- Spacing (8px grid) ---------------------------------- */
+  --fw-sp-4:  4px;   /* half-step: intra-component only */
+  --fw-sp-8:  8px;
+  --fw-sp-12: 12px;  /* half-step: intra-component only */
+  --fw-sp-16: 16px;
+  --fw-sp-24: 24px;
+  --fw-sp-32: 32px;
+  --fw-sp-40: 40px;
+  --fw-sp-48: 48px;
+  --fw-sp-64: 64px;
+  --fw-sp-80: 80px;
+  --fw-sp-96: 96px;
+
+  /* ---- Typography -------------------------------------------
+     Line-heights are multiples of 4; headings sit on 8.       */
+  --fw-font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, sans-serif;
+  --fw-font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo,
+                  Consolas, "Liberation Mono", monospace;
+
+  --fw-fs-xs: 11px;  --fw-lh-xs: 16px;   /* legends, badges, caps labels */
+  --fw-fs-sm: 12px;  --fw-lh-sm: 16px;   /* dense panel UI (default in app) */
+  --fw-fs-md: 14px;  --fw-lh-md: 20px;   /* content default, buttons */
+  --fw-fs-lg: 16px;  --fw-lh-lg: 24px;   /* panel titles */
+  --fw-fs-xl: 20px;  --fw-lh-xl: 28px;
+  --fw-fs-2xl: 24px; --fw-lh-2xl: 32px;  /* page titles */
+  --fw-fs-3xl: 32px; --fw-lh-3xl: 40px;  /* style-guide hero only */
+
+  --fw-fw-regular: 400;
+  --fw-fw-medium: 500;
+  --fw-fw-semibold: 600;
+  --fw-track-caps: 0.05em;
+
+  /* ---- Radii / borders ------------------------------------- */
+  --fw-r-sm: 2px;     /* chips, keycaps, tooltips, swatches */
+  --fw-r-md: 4px;     /* controls, cards, toolbars */
+  --fw-r-lg: 8px;     /* floating panels, modals, palette */
+  --fw-r-full: 999px;
+  --fw-bw-1: 1px;
+  --fw-bw-2: 2px;
+
+  /* ---- Elevation (neutral alphas only) ---------------------- */
+  --fw-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.10);
+  --fw-shadow-2: 0 2px 8px rgba(0, 0, 0, 0.14);   /* floating toolbars, popovers */
+  --fw-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.18); /* modal, command palette */
+
+  /* ---- Z-index layers --------------------------------------- */
+  --fw-z-canvas: 0;
+  --fw-z-canvas-ui: 10;
+  --fw-z-panel: 20;
+  --fw-z-flyout: 40;
+  --fw-z-tooltip: 60;
+  --fw-z-modal: 70;
+  --fw-z-toast: 80;
+  --fw-z-debug: 100;
+
+  /* ---- Component sizes (all on the 8px grid) ---------------- */
+  --fw-size-control-sm: 24px;
+  --fw-size-control-md: 32px;
+  --fw-size-control-lg: 40px;
+  --fw-size-appbar: 48px;
+  --fw-size-rail: 48px;
+  --fw-size-toolbar: 40px;
+  --fw-size-panel-header: 40px;
+  --fw-size-row: 24px;      /* tree rows, metric rows */
+  --fw-size-row-lg: 32px;
+  --fw-size-panel-left: 280px;
+  --fw-size-panel-right: 320px;
+  --fw-size-icon: 20px;
+  --fw-size-icon-sm: 16px;
+
+  /* ---- Focus & motion ---------------------------------------- */
+  --fw-ring: 0 0 0 2px var(--fw-bg-app), 0 0 0 4px var(--fw-g900);
+  --fw-dur-1: 120ms;
+  --fw-dur-2: 200ms;
+  --fw-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ---- Patterns ----------------------------------------------
+     The kit's replacement for semantic color. currentColor is
+     the pattern ink at the point of use; pair with a background
+     color. Pattern spacing is texture, not layout (grid-exempt).
+     Dots require background-size: 8px 8px (6px for dense).     */
+  --fw-pat-hatch:     repeating-linear-gradient(45deg,  currentColor 0 1px, transparent 1px 6px);
+  --fw-pat-hatch-rev: repeating-linear-gradient(-45deg, currentColor 0 1px, transparent 1px 6px);
+  --fw-pat-cross:     repeating-linear-gradient(45deg,  currentColor 0 1px, transparent 1px 6px),
+                      repeating-linear-gradient(-45deg, currentColor 0 1px, transparent 1px 6px);
+  --fw-pat-dots:      radial-gradient(currentColor 1px, transparent 1.5px);
+  --fw-pat-lines-v:   repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 4px);
+  --fw-pat-lines-h:   repeating-linear-gradient(0deg,  currentColor 0 1px, transparent 1px 4px);
+}

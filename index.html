@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FW · Forma Wireframe Kit — Design System</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/styleguide.css">
+</head>
+<body class="sg-body">
+
+<!-- FW sprite — canonical copy lives in assets/sprite.svg. Re-paste there after edits. -->
+<svg xmlns="http://www.w3.org/2000/svg" class="fw-sprite" aria-hidden="true">
+  <defs>
+    <pattern id="fw-pat-svg-residential" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <path d="M0.5 0 V6" stroke="var(--fw-g700, #4f4f4f)" stroke-width="1"/>
+    </pattern>
+    <pattern id="fw-pat-svg-commercial" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="var(--fw-g100, #f4f4f4)"/>
+      <circle cx="4" cy="4" r="1" fill="var(--fw-g700, #4f4f4f)"/>
+    </pattern>
+    <pattern id="fw-pat-svg-parking" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <path d="M0.5 0 V6 M0 0.5 H6" stroke="var(--fw-g600, #6e6e6e)" stroke-width="1"/>
+    </pattern>
+    <pattern id="fw-pat-svg-veg" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="var(--fw-g100, #f4f4f4)"/>
+      <circle cx="3" cy="3" r="0.9" fill="var(--fw-g500, #8c8c8c)"/>
+    </pattern>
+    <pattern id="fw-pat-svg-excluded" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="rgba(255,255,255,0.6)"/>
+      <path d="M0.5 0 V8" stroke="var(--fw-g500, #8c8c8c)" stroke-width="1"/>
+    </pattern>
+    <symbol id="fw-site-mini" viewBox="0 0 160 112">
+      <polygon points="12,18 148,10 152,94 62,104 8,84" fill="none" stroke="var(--fw-g900, #1a1a1a)" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <path d="M0 70 C40 64 120 92 160 84" fill="none" stroke="var(--fw-g300, #d0d0d0)" stroke-width="7"/>
+      <rect x="26" y="26" width="38" height="26" fill="url(#fw-pat-svg-residential)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <polygon points="76,22 132,18 134,44 104,46 102,60 78,62" fill="url(#fw-pat-svg-residential)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <rect x="108" y="58" width="34" height="26" fill="url(#fw-pat-svg-commercial)" stroke="var(--fw-g700, #4f4f4f)"/>
+      <rect x="26" y="60" width="22" height="14" fill="var(--fw-g200, #e3e3e3)" stroke="var(--fw-g400, #b0b0b0)"/>
+      <circle cx="62" cy="86" r="7" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500, #8c8c8c)"/>
+      <circle cx="84" cy="92" r="5" fill="url(#fw-pat-svg-veg)" stroke="var(--fw-g500, #8c8c8c)"/>
+    </symbol>
+  </defs>
+  <symbol id="fw-i-select" viewBox="0 0 20 20"><path d="M6 3.5 L15 9.5 L10.8 10.8 L9 15.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-building" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="3.5" width="9" height="13"/><path d="M5.5 8 H14.5 M5.5 12 H14.5"/></g></symbol>
+  <symbol id="fw-i-line-building" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7.5" width="15" height="6"/><path d="M7.5 7.5 V13.5 M12.5 7.5 V13.5"/></g></symbol>
+  <symbol id="fw-i-house" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9.5 L10 4 L16.5 9.5 V16 H3.5 Z"/><path d="M8.5 16 V12 H11.5 V16"/></g></symbol>
+  <symbol id="fw-i-road" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 17 C7 12.5 6 7.5 7.5 3"/><path d="M12.5 17 C14.5 12.5 13.5 7.5 15 3"/><path d="M8.75 16 C10.5 12 9.75 8 11.25 4" stroke-dasharray="2 3"/></g></symbol>
+  <symbol id="fw-i-tree" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="7.5" r="4"/><path d="M10 11.5 V16.5 M6.5 16.5 H13.5"/></g></symbol>
+  <symbol id="fw-i-terrain" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 12.5 C5.5 9.5 8.5 14 11.5 11 S16 8.5 17.5 9.5"/><path d="M2.5 16.5 C6 13.5 9 17.5 12.5 15 S16.5 13.5 17.5 14"/></g></symbol>
+  <symbol id="fw-i-zone" viewBox="0 0 20 20"><rect x="4" y="4.5" width="12" height="11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-sun" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="3.25"/><path d="M10 3 V5 M10 15 V17 M3 10 H5 M15 10 H17 M5.05 5.05 L6.5 6.5 M13.5 13.5 L14.95 14.95 M14.95 5.05 L13.5 6.5 M6.5 13.5 L5.05 14.95"/></g></symbol>
+  <symbol id="fw-i-daylight" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 14.5 H17"/><path d="M6.5 14.5 A3.5 3.5 0 0 1 13.5 14.5"/><path d="M10 7.5 V5.5 M5.8 9.3 L4.4 7.9 M14.2 9.3 L15.6 7.9"/></g></symbol>
+  <symbol id="fw-i-wind" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 6.5 H11.5 A2.25 2.25 0 1 0 9.25 4.25"/><path d="M3 10.5 H15.5 A2.25 2.25 0 1 1 13.25 12.75"/><path d="M3 14.5 H8.5"/></g></symbol>
+  <symbol id="fw-i-noise" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5 V11.5 H6.5 L10.5 15 V5 L6.5 8.5 Z"/><path d="M13 7.5 A4.5 4.5 0 0 1 13 12.5 M15.25 5.5 A8 8 0 0 1 15.25 14.5"/></g></symbol>
+  <symbol id="fw-i-microclimate" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8.75 4.5 a1.25 1.25 0 0 1 2.5 0 V11 a3 3 0 1 1 -2.5 0 Z"/><path d="M13.5 6 H15.5 M13.5 9 H15.5"/></g></symbol>
+  <symbol id="fw-i-solar" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 7.5 H16.5 L14.5 13.5 H3.5 Z"/><path d="M11 7.5 L9 13.5 M4.5 10.5 H15.5 M8 13.5 V16.5 M12 13.5 V16.5"/></g></symbol>
+  <symbol id="fw-i-carbon" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 C9 4 4.5 8.5 4.5 15.5 C11.5 15.5 16 11 16 4 Z"/><path d="M4.5 15.5 C8 12 11 9 14 6"/></g></symbol>
+  <symbol id="fw-i-layers" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 L16.5 7 L10 10.5 L3.5 7 Z"/><path d="M3.5 10.5 L10 14 L16.5 10.5 M3.5 14 L10 17.5 L16.5 14"/></g></symbol>
+  <symbol id="fw-i-library" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4" width="11" height="3"/><rect x="5.5" y="7" width="9" height="9"/><path d="M8.5 10 H11.5"/></g></symbol>
+  <symbol id="fw-i-puzzle" viewBox="0 0 20 20"><path d="M4.5 7.5 H7.5 V6.25 a2.5 2.5 0 0 1 5 0 V7.5 H15.5 V10.5 H14.25 a2.5 2.5 0 0 0 0 5 H15.5 V16.5 H4.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-members" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7.5" cy="6.75" r="2.75"/><path d="M3 16.5 a4.5 4.5 0 0 1 9 0"/><path d="M13.25 9.5 a2.6 2.6 0 1 0 -1.4 -4.9"/><path d="M13.5 12.6 a4 4 0 0 1 3.5 3.9"/></g></symbol>
+  <symbol id="fw-i-search" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="9" r="5.25"/><path d="M13 13 L16.5 16.5"/></g></symbol>
+  <symbol id="fw-i-gear" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="5.25"/><circle cx="10" cy="10" r="2"/><path d="M10 2.5 V4.75 M10 15.25 V17.5 M2.5 10 H4.75 M15.25 10 H17.5 M4.7 4.7 L6.3 6.3 M13.7 13.7 L15.3 15.3 M15.3 4.7 L13.7 6.3 M6.3 13.7 L4.7 15.3"/></g></symbol>
+  <symbol id="fw-i-eye" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 10 C5 5.5 15 5.5 17.5 10 C15 14.5 5 14.5 2.5 10 Z"/><circle cx="10" cy="10" r="2.25"/></g></symbol>
+  <symbol id="fw-i-eye-off" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 10 C5 5.5 15 5.5 17.5 10 C15 14.5 5 14.5 2.5 10 Z"/><path d="M4.5 15.5 L15.5 4.5"/></g></symbol>
+  <symbol id="fw-i-plus" viewBox="0 0 20 20"><path d="M10 4.5 V15.5 M4.5 10 H15.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-minus" viewBox="0 0 20 20"><path d="M4.5 10 H15.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-compare" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3.5" y="3.5" width="5.5" height="5.5"/><rect x="11" y="3.5" width="5.5" height="5.5"/><rect x="3.5" y="11" width="5.5" height="5.5"/><rect x="11" y="11" width="5.5" height="5.5"/></g></symbol>
+  <symbol id="fw-i-compass" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6.75"/><path d="M10 5.75 L12 12.25 L10 11 L8 12.25 Z"/></g></symbol>
+  <symbol id="fw-i-camera" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6.5" width="14" height="9" rx="1"/><path d="M7 6.5 L8.25 4.5 H11.75 L13 6.5"/><circle cx="10" cy="11" r="2.5"/></g></symbol>
+  <symbol id="fw-i-dots-h" viewBox="0 0 20 20"><g fill="currentColor"><circle cx="4.5" cy="10" r="1.25"/><circle cx="10" cy="10" r="1.25"/><circle cx="15.5" cy="10" r="1.25"/></g></symbol>
+  <symbol id="fw-i-x" viewBox="0 0 20 20"><path d="M5 5 L15 15 M15 5 L5 15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-chevron" viewBox="0 0 20 20"><path d="M5 7.5 L10 12.5 L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-comment" viewBox="0 0 20 20"><path d="M3.5 4.5 H16.5 V13.5 H9.5 L6 16.5 V13.5 H3.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-share" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="10" r="2"/><circle cx="15" cy="5" r="2"/><circle cx="15" cy="15" r="2"/><path d="M6.8 9.1 L13.2 5.9 M6.8 10.9 L13.2 14.1"/></g></symbol>
+  <symbol id="fw-i-play" viewBox="0 0 20 20"><path d="M7 5 L15 10 L7 15 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-inspect" viewBox="0 0 20 20"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"><circle cx="10" cy="10" r="4.25"/><path d="M10 2.5 V5 M10 15 V17.5 M2.5 10 H5 M15 10 H17.5"/><circle cx="10" cy="10" r="1" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="fw-i-check" viewBox="0 0 20 20"><path d="M4 10.5 L8.25 14.75 L16 5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-calendar" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3.5" y="5" width="13" height="11.5" rx="1"/><path d="M3.5 9 H16.5 M7 3 V6.5 M13 3 V6.5 M6.5 12.5 H8 M12 12.5 H13.5"/></g></symbol>
+  <symbol id="fw-i-alert" viewBox="0 0 20 20"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M10 3.5 L17.5 16.5 H2.5 Z"/><path d="M10 8.5 V12"/><circle cx="10" cy="14.25" r="0.5" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="fw-i-arrow-left" viewBox="0 0 20 20"><path d="M16.5 10 H4 M8.5 5.5 L4 10 L8.5 14.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-grid" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3.5" y="3.5" width="13" height="13"/><path d="M8 3.5 V16.5 M12 3.5 V16.5 M3.5 8 H16.5 M3.5 12 H16.5"/></g></symbol>
+  <symbol id="fw-i-bookmark" viewBox="0 0 20 20"><path d="M6 3.5 H14 V16.5 L10 13.25 L6 16.5 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-sticky" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 4 H16 V11.5 L11.5 16 H4 Z"/><path d="M11.5 16 V11.5 H16"/></g></symbol>
+  <symbol id="fw-i-pen" viewBox="0 0 20 20"><path d="M4 16 L5.3 11.9 L13.65 3.55 A1.85 1.85 0 0 1 16.45 6.35 L8.1 14.7 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-move" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 V17.5 M2.5 10 H17.5"/><path d="M7.75 4.75 L10 2.5 L12.25 4.75 M7.75 15.25 L10 17.5 L12.25 15.25 M4.75 7.75 L2.5 10 L4.75 12.25 M15.25 7.75 L17.5 10 L15.25 12.25"/></g></symbol>
+  <symbol id="fw-i-frame" viewBox="0 0 20 20"><path d="M6.5 2.5 V17.5 M13.5 2.5 V17.5 M2.5 6.5 H17.5 M2.5 13.5 H17.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="fw-i-text" viewBox="0 0 20 20"><path d="M4.5 6 V4 H15.5 V6 M10 4 V16 M7.5 16 H12.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-arrow-ne" viewBox="0 0 20 20"><path d="M4.5 15.5 L15.5 4.5 M9.5 4.5 H15.5 V10.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-shapes" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.75" cy="13" r="3.75"/><rect x="10.5" y="3.5" width="6" height="6"/></g></symbol>
+  <symbol id="fw-i-help" viewBox="0 0 20 20"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"><circle cx="10" cy="10" r="7"/><path d="M7.9 7.9 a2.1 2.1 0 1 1 3.2 1.8 c-.66.4-1.1.86-1.1 1.7"/><circle cx="10" cy="14.25" r="0.5" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="fw-i-sliders" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 6 H5.75 M9.25 6 H17"/><circle cx="7.5" cy="6" r="1.75"/><path d="M3 10.5 H10.75 M14.25 10.5 H17"/><circle cx="12.5" cy="10.5" r="1.75"/><path d="M3 15 H4.25 M7.75 15 H17"/><circle cx="6" cy="15" r="1.75"/></g></symbol>
+  <symbol id="fw-i-export" viewBox="0 0 20 20"><path d="M10 3.5 V12.5 M6 9 L10 13 L14 9 M4 16.5 H16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fw-i-history" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.25 7 A6.5 6.5 0 1 1 3.75 11.5"/><path d="M4.25 3.5 V7 H7.75"/><path d="M10.5 7 V10.5 L13.25 12.5"/></g></symbol>
+  <symbol id="fw-i-pin" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17.5 C10 17.5 4.5 12 4.5 8.25 A5.5 5.5 0 0 1 15.5 8.25 C15.5 12 10 17.5 10 17.5 Z"/><circle cx="10" cy="8.25" r="1.9"/></g></symbol>
+  <symbol id="fw-i-logo" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M10 3 L17.5 17 H2.5 Z"/><path d="M10 8.5 L13.25 14.5 H6.75 Z"/></g></symbol>
+  <symbol id="fw-i-panel" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="4" width="14" height="12" rx="1"/><path d="M7.5 4 V16"/></g></symbol>
+  <symbol id="fw-i-ruler" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 L13 3 L17 7 L7 17 Z"/><path d="M6.25 13.75 L7.75 12.25 M9.25 10.75 L10.75 9.25 M12.25 7.75 L13.75 6.25"/></g></symbol>
+</svg>
+
+<div class="sg-layout">
+
+  <!-- ====== Sheet index ====== -->
+  <nav class="sg-nav">
+    <div class="sg-nav__inner">
+      <div class="sg-nav__brand">
+        <svg class="fw-icon"><use href="#fw-i-logo"/></svg>
+        <strong>FW&nbsp;/ Wireframe Kit</strong>
+      </div>
+      <div class="sg-nav__group">
+        <div class="sg-nav__grouplabel">Sheets</div>
+        <a class="sg-nav__link" href="#fw-00"><span class="sg-nav__num">FW-00</span>Getting started</a>
+        <a class="sg-nav__link" href="#fw-01"><span class="sg-nav__num">FW-01</span>Foundations</a>
+        <a class="sg-nav__link" href="#fw-02"><span class="sg-nav__num">FW-02</span>Controls</a>
+        <a class="sg-nav__link" href="#fw-03"><span class="sg-nav__num">FW-03</span>App chrome</a>
+        <a class="sg-nav__link" href="#fw-04"><span class="sg-nav__num">FW-04</span>Data display</a>
+        <a class="sg-nav__link" href="#fw-05"><span class="sg-nav__num">FW-05</span>Overlays</a>
+        <a class="sg-nav__link" href="#fw-06"><span class="sg-nav__num">FW-06</span>Canvas &amp; board</a>
+      </div>
+      <div class="sg-nav__group">
+        <div class="sg-nav__grouplabel">Demo screens</div>
+        <a class="sg-nav__link" href="demos/dashboard.html"><span class="sg-nav__num">D-01</span>Project hub</a>
+        <a class="sg-nav__link" href="demos/editor.html"><span class="sg-nav__num">D-02</span>Design editor</a>
+        <a class="sg-nav__link" href="demos/analysis.html"><span class="sg-nav__num">D-03</span>Analysis view</a>
+        <a class="sg-nav__link" href="demos/compare.html"><span class="sg-nav__num">D-04</span>Compare</a>
+        <a class="sg-nav__link" href="demos/board.html"><span class="sg-nav__num">D-05</span>Board</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====== Content ====== -->
+  <main class="sg-main">
+
+    <!-- Cover -->
+    <header class="sg-cover" id="fw-00">
+      <div class="sg-cover__kicker">FW · Wireframe design system · Issue A</div>
+      <h1 class="sg-cover__title">A black &amp; white kit for mocking up Forma site-design concepts</h1>
+      <p class="sg-cover__lede">
+        An original grayscale component library inspired by the UX grammar of Autodesk Forma —
+        canvas-first layout, docked panels, live metrics, rapid analyses. Built on a strict 8px grid.
+        Patterns stand in for semantic color. Copy any component into a new page and compose.
+      </p>
+      <dl class="sg-titleblock">
+        <div><dt>Project</dt><dd>Forma Wireframe Kit</dd></div>
+        <div><dt>Module</dt><dd>HTML / CSS · no build</dd></div>
+        <div><dt>Scale</dt><dd>8px grid · 1:1</dd></div>
+        <div><dt>Palette</dt><dd>Grayscale only</dd></div>
+      </dl>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Page skeleton</h3>
+        <p class="sg-sub__usage">Every mockup page starts from this skeleton. The icon sprite block (see view-source of this page, first child of <code>&lt;body&gt;</code>) must be pasted in for <code>&lt;use href="#fw-i-…"&gt;</code> to resolve over <code>file://</code>.</p>
+        <pre class="sg-code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Concept — Forma Wireframe&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/tokens.css"&gt;
+  &lt;link rel="stylesheet" href="css/base.css"&gt;
+  &lt;link rel="stylesheet" href="css/components.css"&gt;
+  &lt;link rel="stylesheet" href="css/app.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- paste the FW sprite block here --&gt;
+  &lt;!-- compose .fw-* components --&gt;
+  &lt;script src="js/shared.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="sg-stage">
+          <div class="sg-col">
+            <strong class="fw-text-sm">Kit rules</strong>
+            <ul class="fw-text-sm" style="padding-left: 16px; color: var(--fw-ink-2); display: flex; flex-direction: column; gap: 4px;">
+              <li>Heights, row heights and layout gaps sit on the <strong>8px grid</strong>; 4px is allowed only inside a component. Press <span class="fw-kbd">g</span> on any page to overlay the grid.</li>
+              <li><strong>No chromatic color.</strong> Meaning is carried by the grayscale ramp and by patterns — hatch, dots, crosshatch — always with a labeled legend.</li>
+              <li>Components carry <strong>no external margins</strong>; parents own spacing via flex/grid <code>gap</code>.</li>
+              <li>JavaScript is optional. Pose states in markup with <code>.is-open</code>, <code>.is-selected</code>, <code>aria-checked</code>.</li>
+              <li>Use Forma vocabulary: proposal, base layer, site limit, function, GFA, rapid vs detailed analysis.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ FW-01 FOUNDATIONS ============ -->
+    <section class="sg-section" id="fw-01">
+      <div class="sg-section__head">
+        <span class="sg-section__num">FW-01</span>
+        <h2 class="sg-section__title">Foundations</h2>
+        <span class="sg-section__note">tokens.css</span>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Grayscale ramp</h3>
+        <p class="sg-sub__usage">Thirteen steps, every value R&nbsp;=&nbsp;G&nbsp;=&nbsp;B. Components reference semantic aliases, never raw steps in markup.</p>
+        <div class="sg-stage">
+          <div class="sg-ramp">
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g0); border-right: 1px solid var(--fw-line);"></div><div class="sg-ramp__meta">g0</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g50)"></div><div class="sg-ramp__meta">g50</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g100)"></div><div class="sg-ramp__meta">g100</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g150)"></div><div class="sg-ramp__meta">g150</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g200)"></div><div class="sg-ramp__meta">g200</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g300)"></div><div class="sg-ramp__meta">g300</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g400)"></div><div class="sg-ramp__meta">g400</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g500)"></div><div class="sg-ramp__meta">g500</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g600)"></div><div class="sg-ramp__meta">g600</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g700)"></div><div class="sg-ramp__meta">g700</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g800)"></div><div class="sg-ramp__meta">g800</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g900)"></div><div class="sg-ramp__meta">g900</div></div>
+            <div class="sg-ramp__step"><div class="sg-ramp__chip" style="background: var(--fw-g1000)"></div><div class="sg-ramp__meta">g1000</div></div>
+          </div>
+          <table class="sg-tokens">
+            <tr><th>Alias</th><th>Maps to</th><th>Use</th></tr>
+            <tr><td><code>--fw-ink</code></td><td><code>g900</code></td><td>Primary text</td></tr>
+            <tr><td><code>--fw-ink-2</code></td><td><code>g600</code></td><td>Secondary text (minimum AA on white)</td></tr>
+            <tr><td><code>--fw-ink-3</code></td><td><code>g400</code></td><td>Placeholders, disabled, ticks</td></tr>
+            <tr><td><code>--fw-line</code> / <code>--fw-line-strong</code></td><td><code>g200</code> / <code>g300</code></td><td>Hairline borders / control borders</td></tr>
+            <tr><td><code>--fw-line-emphasis</code></td><td><code>g900</code></td><td>Selection bars, emphasis rules</td></tr>
+            <tr><td><code>--fw-bg-canvas</code> / <code>--fw-bg-hover</code> / <code>--fw-bg-selected</code></td><td><code>g100</code> / <code>g100</code> / <code>g150</code></td><td>Canvas, hover, selected rows</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Patterns — semantic fills</h3>
+        <p class="sg-sub__usage">The kit's replacement for color. CSS utilities (<code>.fw-fill--…</code>) for chips, bars and cards; matching SVG patterns (<code>url(#fw-pat-svg-…)</code>) for canvas geometry. Always pair a patterned surface with a legend.</p>
+        <div class="sg-stage">
+          <div class="sg-row">
+            <div class="sg-item"><span class="fw-swatch fw-swatch--lg fw-fill--residential" style="width:48px;height:48px"></span><span class="sg-spec">residential · hatch 45°</span></div>
+            <div class="sg-item"><span class="fw-swatch fw-swatch--lg fw-fill--commercial" style="width:48px;height:48px"></span><span class="sg-spec">commercial · dots 8px</span></div>
+            <div class="sg-item"><span class="fw-swatch fw-swatch--lg fw-fill--parking" style="width:48px;height:48px"></span><span class="sg-spec">parking · crosshatch</span></div>
+            <div class="sg-item"><span class="fw-swatch fw-swatch--lg fw-fill--veg" style="width:48px;height:48px"></span><span class="sg-spec">vegetation · dots 6px</span></div>
+            <div class="sg-item"><span class="fw-swatch fw-swatch--lg fw-fill--unspecified" style="width:48px;height:48px"></span><span class="sg-spec">unspecified · g200</span></div>
+            <div class="sg-item"><span class="fw-swatch fw-swatch--lg fw-fill--context" style="width:48px;height:48px"></span><span class="sg-spec">existing context · g300</span></div>
+            <div class="sg-item"><span class="fw-swatch fw-swatch--lg fw-fill--excluded" style="width:48px;height:48px"></span><span class="sg-spec">excluded / filtered</span></div>
+          </div>
+          <hr class="fw-rule">
+          <div class="sg-row sg-row--start">
+            <div class="sg-col" style="min-width: 240px;">
+              <span class="fw-caps fw-muted">Analysis ramp · 5 bands</span>
+              <div class="fw-key">
+                <div class="fw-key__row"><span class="fw-swatch fw-band-1"></span><span class="fw-key__label">Band 1 — low</span><span class="fw-key__value">0–2 h</span></div>
+                <div class="fw-key__row"><span class="fw-swatch fw-band-2"></span><span class="fw-key__label">Band 2</span><span class="fw-key__value">2–4 h</span></div>
+                <div class="fw-key__row"><span class="fw-swatch fw-band-3"></span><span class="fw-key__label">Band 3</span><span class="fw-key__value">4–6 h</span></div>
+                <div class="fw-key__row"><span class="fw-swatch fw-band-4"></span><span class="fw-key__label">Band 4</span><span class="fw-key__value">6–8 h</span></div>
+                <div class="fw-key__row"><span class="fw-swatch fw-band-5"></span><span class="fw-key__label">Band 5 — high</span><span class="fw-key__value">8–10 h</span></div>
+              </div>
+            </div>
+            <div class="sg-col" style="min-width: 280px;">
+              <span class="fw-caps fw-muted">Wind comfort · Lawson LDDC</span>
+              <div class="fw-key">
+                <div class="fw-key__row"><span class="fw-swatch fw-band-1"></span><span class="fw-key__label">A — Sitting</span><span class="fw-key__value">&lt; 2.5 m/s</span></div>
+                <div class="fw-key__row"><span class="fw-swatch fw-fill--dots" style="background-color: var(--fw-g300); color: var(--fw-g600);"></span><span class="fw-key__label">B — Standing</span><span class="fw-key__value">&lt; 4 m/s</span></div>
+                <div class="fw-key__row"><span class="fw-swatch fw-band-3"></span><span class="fw-key__label">C — Strolling</span><span class="fw-key__value">&lt; 6 m/s</span></div>
+                <div class="fw-key__row"><span class="fw-swatch fw-fill--hatch" style="background-color: var(--fw-g700); color: var(--fw-g900);"></span><span class="fw-key__label">D — Walking</span><span class="fw-key__value">&lt; 8 m/s</span></div>
+                <div class="fw-key__row"><span class="fw-swatch fw-band-5"></span><span class="fw-key__label">E — Uncomfortable</span><span class="fw-key__value">≥ 8 m/s</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Typography</h3>
+        <p class="sg-sub__usage">System UI stack (webfont-free, file:// friendly). Mono for every number that matters — metrics, dimensions, shortcuts. Line heights are multiples of 4; headings sit on 8.</p>
+        <div class="sg-stage">
+          <div class="sg-type">
+            <div class="sg-type__row"><span class="sg-spec">3xl · 32/40 · semibold</span><span style="font-size:var(--fw-fs-3xl);line-height:var(--fw-lh-3xl);font-weight:var(--fw-fw-semibold)">Nordhavn Waterfront</span></div>
+            <div class="sg-type__row"><span class="sg-spec">2xl · 24/32 · semibold</span><span style="font-size:var(--fw-fs-2xl);line-height:var(--fw-lh-2xl);font-weight:var(--fw-fw-semibold)">Projects</span></div>
+            <div class="sg-type__row"><span class="sg-spec">xl · 20/28 · semibold</span><span style="font-size:var(--fw-fs-xl);line-height:var(--fw-lh-xl);font-weight:var(--fw-fw-semibold)">Sun hours analysis</span></div>
+            <div class="sg-type__row"><span class="sg-spec">lg · 16/24 · semibold</span><span style="font-size:var(--fw-fs-lg);line-height:var(--fw-lh-lg);font-weight:var(--fw-fw-semibold)">Area metrics</span></div>
+            <div class="sg-type__row"><span class="sg-spec">md · 14/20 · regular</span><span>Draw the footprint, set floors and assign functions per floor.</span></div>
+            <div class="sg-type__row"><span class="sg-spec">sm · 12/16 · regular</span><span class="fw-text-sm">Dense panel UI default — labels, tree rows, metric rows.</span></div>
+            <div class="sg-type__row"><span class="sg-spec">xs · 11/16 · caps</span><span class="fw-caps">Proposals · Layers · Analyze</span></div>
+            <div class="sg-type__row"><span class="sg-spec">mono · tabular</span><span class="fw-mono fw-text-sm">12,400 m² · 23% · 24.0 m · tCO₂e 1,020</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Spacing &amp; the 8px grid</h3>
+        <p class="sg-sub__usage">Layout gaps and component heights land on 8. The 4px half-step lives only inside components. Toggle the baseline overlay to audit any page — here via the checkbox, on demo pages press <span class="fw-kbd">g</span>.</p>
+        <div class="sg-stage">
+          <div class="sg-row">
+            <input type="checkbox" id="sg-grid" class="fw-checkbox sg-grid-toggle">
+            <label for="sg-grid" class="fw-text-sm" style="cursor:pointer">Show 8px baseline grid</label>
+            <div class="sg-grid-overlay"></div>
+          </div>
+          <div class="sg-space">
+            <div class="sg-space__row"><span class="sg-space__label">sp-4 · half</span><div class="sg-space__bar" style="width:4px"></div></div>
+            <div class="sg-space__row"><span class="sg-space__label">sp-8</span><div class="sg-space__bar" style="width:8px"></div></div>
+            <div class="sg-space__row"><span class="sg-space__label">sp-12 · half</span><div class="sg-space__bar" style="width:12px"></div></div>
+            <div class="sg-space__row"><span class="sg-space__label">sp-16</span><div class="sg-space__bar" style="width:16px"></div></div>
+            <div class="sg-space__row"><span class="sg-space__label">sp-24</span><div class="sg-space__bar" style="width:24px"></div></div>
+            <div class="sg-space__row"><span class="sg-space__label">sp-32</span><div class="sg-space__bar" style="width:32px"></div></div>
+            <div class="sg-space__row"><span class="sg-space__label">sp-40</span><div class="sg-space__bar" style="width:40px"></div></div>
+            <div class="sg-space__row"><span class="sg-space__label">sp-48</span><div class="sg-space__bar" style="width:48px"></div></div>
+            <div class="sg-space__row"><span class="sg-space__label">sp-64</span><div class="sg-space__bar" style="width:64px"></div></div>
+            <div class="sg-space__row"><span class="sg-space__label">sp-96</span><div class="sg-space__bar" style="width:96px"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Elevation, radii &amp; layers</h3>
+        <div class="sg-stage">
+          <div class="sg-row">
+            <div class="sg-item"><div style="width:96px;height:64px;background:var(--fw-g0);border:1px solid var(--fw-line);border-radius:var(--fw-r-md);box-shadow:var(--fw-shadow-1)"></div><span class="sg-spec">shadow-1 · cards</span></div>
+            <div class="sg-item"><div style="width:96px;height:64px;background:var(--fw-g0);border:1px solid var(--fw-line);border-radius:var(--fw-r-md);box-shadow:var(--fw-shadow-2)"></div><span class="sg-spec">shadow-2 · floating bars</span></div>
+            <div class="sg-item"><div style="width:96px;height:64px;background:var(--fw-g0);border:1px solid var(--fw-line);border-radius:var(--fw-r-lg);box-shadow:var(--fw-shadow-3)"></div><span class="sg-spec">shadow-3 · modals</span></div>
+            <div class="sg-item"><div style="width:64px;height:64px;border:1px solid var(--fw-g900);border-radius:var(--fw-r-sm)"></div><span class="sg-spec">r-sm 2</span></div>
+            <div class="sg-item"><div style="width:64px;height:64px;border:1px solid var(--fw-g900);border-radius:var(--fw-r-md)"></div><span class="sg-spec">r-md 4</span></div>
+            <div class="sg-item"><div style="width:64px;height:64px;border:1px solid var(--fw-g900);border-radius:var(--fw-r-lg)"></div><span class="sg-spec">r-lg 8</span></div>
+          </div>
+          <table class="sg-tokens">
+            <tr><th>Layer</th><th>Token</th><th>Used by</th></tr>
+            <tr><td>0 / 10</td><td><code>--fw-z-canvas</code> / <code>--fw-z-canvas-ui</code></td><td>Scene / floating canvas chrome</td></tr>
+            <tr><td>20 / 40</td><td><code>--fw-z-panel</code> / <code>--fw-z-flyout</code></td><td>Docked panels / menus &amp; flyouts</td></tr>
+            <tr><td>60 / 70 / 80</td><td><code>--fw-z-tooltip</code> / <code>--fw-z-modal</code> / <code>--fw-z-toast</code></td><td>Tooltips / modal scrim / toasts</td></tr>
+            <tr><td>100</td><td><code>--fw-z-debug</code></td><td>8px grid overlay</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Iconography</h3>
+        <p class="sg-sub__usage">Stroke icons, 20×20 grid, 1.5px round caps, <code>currentColor</code>. Usage: <code>&lt;svg class="fw-icon"&gt;&lt;use href="#fw-i-sun"/&gt;&lt;/svg&gt;</code> — add <code>.fw-icon--sm</code> for 16px, <code>.fw-icon--rot90/180/270</code> to turn the chevron.</p>
+        <div class="sg-stage">
+          <div class="sg-icons">
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-select"/></svg><span class="sg-icons__name">select</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-building"/></svg><span class="sg-icons__name">building</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-line-building"/></svg><span class="sg-icons__name">line-building</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-house"/></svg><span class="sg-icons__name">house</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-road"/></svg><span class="sg-icons__name">road</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-tree"/></svg><span class="sg-icons__name">tree</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-terrain"/></svg><span class="sg-icons__name">terrain</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-zone"/></svg><span class="sg-icons__name">zone</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-sun"/></svg><span class="sg-icons__name">sun</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-daylight"/></svg><span class="sg-icons__name">daylight</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-wind"/></svg><span class="sg-icons__name">wind</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-noise"/></svg><span class="sg-icons__name">noise</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-microclimate"/></svg><span class="sg-icons__name">microclimate</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-solar"/></svg><span class="sg-icons__name">solar</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-carbon"/></svg><span class="sg-icons__name">carbon</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-layers"/></svg><span class="sg-icons__name">layers</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-library"/></svg><span class="sg-icons__name">library</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-puzzle"/></svg><span class="sg-icons__name">puzzle</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-members"/></svg><span class="sg-icons__name">members</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-search"/></svg><span class="sg-icons__name">search</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-gear"/></svg><span class="sg-icons__name">gear</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-eye"/></svg><span class="sg-icons__name">eye</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-eye-off"/></svg><span class="sg-icons__name">eye-off</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-plus"/></svg><span class="sg-icons__name">plus</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-minus"/></svg><span class="sg-icons__name">minus</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-compare"/></svg><span class="sg-icons__name">compare</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-compass"/></svg><span class="sg-icons__name">compass</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-camera"/></svg><span class="sg-icons__name">camera</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-dots-h"/></svg><span class="sg-icons__name">dots-h</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-x"/></svg><span class="sg-icons__name">x</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-chevron"/></svg><span class="sg-icons__name">chevron</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-comment"/></svg><span class="sg-icons__name">comment</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-share"/></svg><span class="sg-icons__name">share</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-play"/></svg><span class="sg-icons__name">play</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-inspect"/></svg><span class="sg-icons__name">inspect</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-check"/></svg><span class="sg-icons__name">check</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-calendar"/></svg><span class="sg-icons__name">calendar</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-alert"/></svg><span class="sg-icons__name">alert</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-arrow-left"/></svg><span class="sg-icons__name">arrow-left</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-grid"/></svg><span class="sg-icons__name">grid</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-bookmark"/></svg><span class="sg-icons__name">bookmark</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-sticky"/></svg><span class="sg-icons__name">sticky</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-pen"/></svg><span class="sg-icons__name">pen</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-move"/></svg><span class="sg-icons__name">move</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-frame"/></svg><span class="sg-icons__name">frame</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-text"/></svg><span class="sg-icons__name">text</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-arrow-ne"/></svg><span class="sg-icons__name">arrow-ne</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-shapes"/></svg><span class="sg-icons__name">shapes</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-help"/></svg><span class="sg-icons__name">help</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-sliders"/></svg><span class="sg-icons__name">sliders</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-export"/></svg><span class="sg-icons__name">export</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-history"/></svg><span class="sg-icons__name">history</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-pin"/></svg><span class="sg-icons__name">pin</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-logo"/></svg><span class="sg-icons__name">logo</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-panel"/></svg><span class="sg-icons__name">panel</span></div>
+            <div class="sg-icons__cell"><svg class="fw-icon"><use href="#fw-i-ruler"/></svg><span class="sg-icons__name">ruler</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FW-02 CONTROLS ============ -->
+    <section class="sg-section" id="fw-02">
+      <div class="sg-section__head">
+        <span class="sg-section__num">FW-02</span>
+        <h2 class="sg-section__title">Controls</h2>
+        <span class="sg-section__note">heights 24 / 32 / 40</span>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Buttons</h3>
+        <p class="sg-sub__usage">Primary is reserved for the one action that advances the workflow (Run analysis, Order, Invite). Danger has no red — weight, an alert icon and an inverting hover carry it; pair with a confirm modal.</p>
+        <div class="sg-stage">
+          <div class="sg-row">
+            <button class="fw-btn fw-btn--primary">Run analysis <span class="fw-btn__hint">~30 s</span></button>
+            <button class="fw-btn fw-btn--secondary">Duplicate proposal</button>
+            <button class="fw-btn fw-btn--ghost">View history</button>
+            <button class="fw-btn fw-btn--danger"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-alert"/></svg>Delete proposal</button>
+            <button class="fw-btn fw-btn--primary" disabled>Run analysis</button>
+          </div>
+          <div class="sg-row">
+            <button class="fw-btn fw-btn--sm fw-btn--secondary">Share</button>
+            <button class="fw-btn fw-btn--secondary"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg>Add date</button>
+            <button class="fw-btn fw-btn--lg fw-btn--primary"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg>New project</button>
+            <span class="sg-spec">sm 24 · md 32 · lg 40</span>
+          </div>
+          <div class="sg-row">
+            <button class="fw-iconbtn" aria-label="Settings"><svg class="fw-icon"><use href="#fw-i-gear"/></svg></button>
+            <button class="fw-iconbtn is-active" aria-label="Inspect"><svg class="fw-icon"><use href="#fw-i-inspect"/></svg></button>
+            <button class="fw-iconbtn fw-iconbtn--outline" aria-label="Camera"><svg class="fw-icon"><use href="#fw-i-camera"/></svg></button>
+            <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+            <span class="sg-spec">icon buttons · default / active / outline / sm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Segmented control · switch · checks</h3>
+        <div class="sg-stage">
+          <div class="sg-row">
+            <div class="fw-seg"><button class="fw-seg__btn">2D</button><button class="fw-seg__btn is-active">3D</button></div>
+            <div class="fw-seg"><button class="fw-seg__btn is-active">Rapid</button><button class="fw-seg__btn">Detailed</button></div>
+            <div class="fw-seg"><button class="fw-seg__btn is-active">Comfort</button><button class="fw-seg__btn">Direction</button></div>
+            <div class="fw-seg fw-seg--sm"><button class="fw-seg__btn is-active">Map</button><button class="fw-seg__btn">Satellite</button></div>
+          </div>
+          <div class="sg-row">
+            <div class="fw-field-row" style="width:240px"><label>Shadows</label><button class="fw-switch" role="switch" aria-checked="true" aria-label="Shadows"></button></div>
+            <div class="fw-field-row" style="width:240px"><label>Streamlines</label><button class="fw-switch" role="switch" aria-checked="false" aria-label="Streamlines"></button></div>
+          </div>
+          <div class="sg-row">
+            <label class="fw-check-label"><input type="checkbox" class="fw-checkbox" checked> Include existing buildings</label>
+            <label class="fw-check-label"><input type="checkbox" class="fw-checkbox"> Inside site limit only</label>
+            <label class="fw-check-label"><input type="radio" name="sg-r" class="fw-radio" checked> Latest version</label>
+            <label class="fw-check-label"><input type="radio" name="sg-r" class="fw-radio"> 02 Jun 2026, 13:10</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Inputs</h3>
+        <div class="sg-stage">
+          <div class="sg-row sg-row--start">
+            <div class="fw-field" style="width:240px">
+              <label class="fw-label" for="sg-in1">Proposal name</label>
+              <input id="sg-in1" class="fw-input" value="Proposal 2 — Courtyard">
+            </div>
+            <div class="fw-field" style="width:240px">
+              <label class="fw-label" for="sg-in2">Address or coordinates</label>
+              <div class="fw-search">
+                <svg class="fw-icon fw-icon--sm"><use href="#fw-i-search"/></svg>
+                <input id="sg-in2" class="fw-input" placeholder="Search location…">
+                <span class="fw-kbd fw-search__kbd">/</span>
+              </div>
+            </div>
+            <div class="fw-field">
+              <label class="fw-label" for="sg-in3">Floors</label>
+              <div class="fw-stepper">
+                <button class="fw-stepper__btn" aria-label="Fewer floors"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-minus"/></svg></button>
+                <input id="sg-in3" class="fw-stepper__value" value="6">
+                <button class="fw-stepper__btn" aria-label="More floors"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg></button>
+              </div>
+            </div>
+            <div class="fw-field">
+              <label class="fw-label" for="sg-in4">Function</label>
+              <div class="fw-selectwrap">
+                <select id="sg-in4" class="fw-select">
+                  <option>Residential</option><option>Commercial</option><option>Unspecified</option>
+                </select>
+                <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="sg-row sg-row--start">
+            <div class="fw-field" style="width: 280px;">
+              <label class="fw-label">Time range</label>
+              <div class="fw-range">
+                <div class="fw-range__track"></div>
+                <div class="fw-range__fill" style="left: 25%; width: 50%;"></div>
+                <div class="fw-range__handle" style="left: 25%;"></div>
+                <div class="fw-range__handle" style="left: 75%;"></div>
+              </div>
+              <div class="fw-slider-meta"><span>08:00</span><span>18:00</span></div>
+            </div>
+            <div class="fw-field" style="width: 280px;">
+              <label class="fw-label" for="sg-in5">Panel efficiency</label>
+              <input id="sg-in5" type="range" class="fw-slider" min="0" max="100" value="60">
+              <div class="fw-slider-meta"><span>0%</span><span>60%</span></div>
+            </div>
+          </div>
+          <div class="sg-row">
+            <span class="fw-chip"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-calendar"/></svg>Mar 21<button class="fw-chip__x" aria-label="Remove date"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-x"/></svg></button></span>
+            <span class="fw-chip"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-calendar"/></svg>Jun 21<button class="fw-chip__x" aria-label="Remove date"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-x"/></svg></button></span>
+            <button class="fw-chip fw-chip--ghost"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg>Add date</button>
+            <span class="fw-rule--v" style="height:24px"></span>
+            <span class="fw-funcchip"><span class="fw-swatch fw-fill--residential"></span>Residential</span>
+            <span class="fw-funcchip"><span class="fw-swatch fw-fill--commercial"></span>Commercial</span>
+            <span class="fw-funcchip"><span class="fw-swatch fw-fill--unspecified"></span>Unspecified</span>
+          </div>
+          <div class="sg-row">
+            <span class="fw-kbd">B</span><span class="fw-kbd">T</span><span class="fw-kbd">I</span><span class="fw-kbd">Space</span><span class="fw-kbd">Esc</span><span class="fw-kbd">⌘</span><span class="fw-kbd">K</span>
+            <span class="sg-spec">keycaps · shortcuts shown in menus &amp; palette</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FW-03 APP CHROME ============ -->
+    <section class="sg-section" id="fw-03">
+      <div class="sg-section__head">
+        <span class="sg-section__num">FW-03</span>
+        <h2 class="sg-section__title">App chrome</h2>
+        <span class="sg-section__note">appbar 48 · rail 48 · panels 280/320</span>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Tabs · breadcrumb · banner</h3>
+        <div class="sg-stage">
+          <div class="sg-row">
+            <div class="fw-tabs" data-fw-tabs>
+              <button class="fw-tabs__tab is-active" data-fw-tab="a" aria-selected="true">Properties</button>
+              <button class="fw-tabs__tab" data-fw-tab="b" aria-selected="false">Units</button>
+              <button class="fw-tabs__tab" data-fw-tab="c" aria-selected="false">Parking</button>
+            </div>
+            <nav class="fw-breadcrumb">
+              <a class="fw-breadcrumb__item" href="#fw-03">Nordhavn Waterfront</a>
+              <span class="fw-breadcrumb__sep">/</span>
+              <span class="fw-breadcrumb__current">Proposal 2 <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg></span>
+            </nav>
+          </div>
+          <div class="fw-banner" style="border-radius: var(--fw-r-sm);">
+            <span>14 days left of trial</span><a class="fw-link" style="color:inherit" href="#fw-03">Set licence</a>
+            <button class="fw-banner__x" aria-label="Dismiss"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-x"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">App bar &amp; module switcher</h3>
+        <p class="sg-sub__usage">The inverse chip anchors the product; its flyout swaps between modules (Site Design, Building Design, Board, Compare) and lists sibling products — posed open below.</p>
+        <div class="sg-stage" style="padding: 0; overflow: visible;">
+          <div style="min-height: 420px;">
+            <header class="fw-appbar" style="border-radius: var(--fw-r-md) var(--fw-r-md) 0 0;">
+              <div class="fw-modswitch is-open">
+                <button class="fw-modswitch__chip" data-fw-flyout>
+                  <svg class="fw-icon fw-icon--sm"><use href="#fw-i-logo"/></svg>
+                  Forma <span class="fw-modswitch__mode">Site Design</span>
+                  <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg>
+                </button>
+                <div class="fw-modswitch__flyout">
+                  <div class="fw-menu__label">Available in this project</div>
+                  <div class="fw-modswitch__grid">
+                    <a class="fw-modcard is-active" href="#fw-03">
+                      <div class="fw-modcard__head"><svg class="fw-icon"><use href="#fw-i-building"/></svg><span class="fw-badge">Current</span></div>
+                      <span class="fw-modcard__name">Site Design</span>
+                      <span class="fw-modcard__desc">Explore and design proposals on the site</span>
+                    </a>
+                    <a class="fw-modcard" href="#fw-03">
+                      <div class="fw-modcard__head"><svg class="fw-icon"><use href="#fw-i-grid"/></svg><span class="fw-badge fw-badge--outline">Beta</span></div>
+                      <span class="fw-modcard__name">Building Design</span>
+                      <span class="fw-modcard__desc">Bring buildings to higher LOD</span>
+                    </a>
+                    <a class="fw-modcard" href="#fw-03">
+                      <div class="fw-modcard__head"><svg class="fw-icon"><use href="#fw-i-sticky"/></svg></div>
+                      <span class="fw-modcard__name">Board</span>
+                      <span class="fw-modcard__desc">Collaborative whiteboard</span>
+                    </a>
+                    <a class="fw-modcard" href="#fw-03">
+                      <div class="fw-modcard__head"><svg class="fw-icon"><use href="#fw-i-compare"/></svg></div>
+                      <span class="fw-modcard__name">Compare</span>
+                      <span class="fw-modcard__desc">Evaluate designs side by side</span>
+                    </a>
+                  </div>
+                  <hr class="fw-menu__rule">
+                  <a class="fw-menu__item" href="#fw-03"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-library"/></svg>Data Management</a>
+                  <a class="fw-menu__item" href="#fw-03"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-members"/></svg>Design Collaboration</a>
+                  <a class="fw-menu__item" href="#fw-03"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-carbon"/></svg>Carbon Insights</a>
+                  <a class="fw-menu__item" href="#fw-03"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-gear"/></svg>Project Admin</a>
+                </div>
+              </div>
+              <span class="fw-rule--v"></span>
+              <nav class="fw-breadcrumb">
+                <a class="fw-breadcrumb__item" href="#fw-03">Nordhavn Waterfront</a>
+                <span class="fw-breadcrumb__sep">/</span>
+                <span class="fw-breadcrumb__current">Proposal 2 <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg></span>
+              </nav>
+              <div class="fw-appbar__spacer"></div>
+              <div class="fw-appbar__actions">
+                <button class="fw-btn fw-btn--sm fw-btn--secondary"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-share"/></svg>Share</button>
+                <button class="fw-iconbtn" aria-label="Comments"><svg class="fw-icon"><use href="#fw-i-comment"/></svg></button>
+                <button class="fw-iconbtn" aria-label="Help"><svg class="fw-icon"><use href="#fw-i-help"/></svg></button>
+                <div class="fw-avatarstack"><span class="fw-avatar">SR</span><span class="fw-avatar">AK</span><span class="fw-avatar fw-avatar--inverse">+3</span></div>
+              </div>
+            </header>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Icon rail &amp; panel shell</h3>
+        <p class="sg-sub__usage">The rail opens left-panel tabs: Navigator, Library, Extensions, Members, Quick access. Selected rows take a 2px black edge bar. Trees are native <code>&lt;details&gt;</code> — they collapse with JS off.</p>
+        <div class="sg-stage sg-stage--canvas" style="flex-direction: row; align-items: stretch; gap: 0; padding: 0; min-height: 440px;">
+          <div class="fw-rail" style="height: auto;">
+            <button class="fw-rail__btn is-active" aria-label="Navigator"><svg class="fw-icon"><use href="#fw-i-layers"/></svg></button>
+            <button class="fw-rail__btn" aria-label="Library"><svg class="fw-icon"><use href="#fw-i-library"/></svg></button>
+            <button class="fw-rail__btn" aria-label="Extensions"><svg class="fw-icon"><use href="#fw-i-puzzle"/></svg></button>
+            <button class="fw-rail__btn" aria-label="Members"><svg class="fw-icon"><use href="#fw-i-members"/></svg></button>
+            <div class="fw-rail__spacer"></div>
+            <button class="fw-rail__btn" aria-label="Quick access"><svg class="fw-icon"><use href="#fw-i-search"/></svg></button>
+          </div>
+          <aside class="fw-panel fw-panel--left" style="height: auto;">
+            <div class="fw-panel__header">
+              <span class="fw-panel__title">Navigator</span>
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Settings"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-gear"/></svg></button>
+            </div>
+            <div class="fw-panel__body">
+              <div class="fw-panel__section">
+                <div class="fw-panel__sectiontitle">Proposals <button class="fw-rowbtn" aria-label="New proposal"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg></button></div>
+                <div class="fw-tree">
+                  <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg><span class="fw-tree__label">Proposal 1 — Baseline</span><span class="fw-tree__actions"><button class="fw-rowbtn" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button></span></div>
+                  <div class="fw-tree__row is-selected"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg><span class="fw-tree__label">Proposal 2 — Courtyard</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button></span></div>
+                  <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg><span class="fw-tree__label">Proposal 3 — Towers</span></div>
+                </div>
+              </div>
+              <div class="fw-panel__section">
+                <div class="fw-panel__sectiontitle">Layers <button class="fw-rowbtn" aria-label="Edit base"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-gear"/></svg></button></div>
+                <div class="fw-tree">
+                  <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-zone"/></svg><span class="fw-tree__label">Site limit</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="Toggle visibility"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-eye"/></svg></button></span></div>
+                  <details open>
+                    <summary class="fw-tree__row"><svg class="fw-icon fw-icon--sm fw-tree__caret"><use href="#fw-i-chevron"/></svg><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg><span class="fw-tree__label">Buildings</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="Toggle visibility"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-eye"/></svg></button></span></summary>
+                    <div class="fw-tree__children">
+                      <div class="fw-tree__row"><span class="fw-tree__label">Building 01</span><span class="fw-funcchip"><span class="fw-swatch fw-fill--residential"></span></span></div>
+                      <div class="fw-tree__row"><span class="fw-tree__label">Building 02</span><span class="fw-funcchip"><span class="fw-swatch fw-fill--residential"></span></span></div>
+                      <div class="fw-tree__row is-selected"><span class="fw-tree__label">Building 03</span><span class="fw-funcchip"><span class="fw-swatch fw-fill--commercial"></span></span></div>
+                    </div>
+                  </details>
+                  <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-tree"/></svg><span class="fw-tree__label">Vegetation</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="Toggle visibility"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-eye-off"/></svg></button></span></div>
+                  <div class="fw-tree__row"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-road"/></svg><span class="fw-tree__label">Transportation</span><span class="fw-tree__actions is-pinned"><button class="fw-rowbtn" aria-label="Toggle visibility"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-eye"/></svg></button></span></div>
+                </div>
+              </div>
+            </div>
+          </aside>
+          <div style="flex:1"></div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Design toolbar · viewport toolbar · zoom</h3>
+        <p class="sg-sub__usage">The design toolbar morphs while a tool is active — label plus exit ✕. Tool categories open flyouts. The viewport cluster holds 2D/3D, compass, camera bookmarks and display options; Board uses the zoom pill.</p>
+        <div class="sg-stage sg-stage--canvas" style="gap: 32px; overflow: visible;">
+          <div class="sg-row">
+            <div class="fw-toolbar">
+              <button class="fw-iconbtn is-active" aria-label="Select"><svg class="fw-icon"><use href="#fw-i-select"/></svg></button>
+              <span class="fw-rule--v"></span>
+              <div class="fw-toolbar__tool is-open">
+                <button class="fw-iconbtn" data-fw-flyout aria-label="Buildings"><svg class="fw-icon"><use href="#fw-i-building"/></svg></button>
+                <div class="fw-toolbar__flyout">
+                  <div class="fw-menu">
+                    <button class="fw-menu__item is-active"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg>Basic building<span class="fw-kbd">B</span></button>
+                    <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-line-building"/></svg>Line building</button>
+                    <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-house"/></svg>House</button>
+                    <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-shapes"/></svg>3D sketch</button>
+                  </div>
+                </div>
+              </div>
+              <button class="fw-iconbtn" aria-label="Limits"><svg class="fw-icon"><use href="#fw-i-zone"/></svg></button>
+              <button class="fw-iconbtn" aria-label="Roads"><svg class="fw-icon"><use href="#fw-i-road"/></svg></button>
+              <button class="fw-iconbtn" aria-label="Vegetation"><svg class="fw-icon"><use href="#fw-i-tree"/></svg></button>
+              <button class="fw-iconbtn" aria-label="Terrain"><svg class="fw-icon"><use href="#fw-i-terrain"/></svg></button>
+              <span class="fw-rule--v"></span>
+              <button class="fw-iconbtn" aria-label="Site automation"><svg class="fw-icon"><use href="#fw-i-grid"/></svg></button>
+            </div>
+          </div>
+          <div class="sg-row">
+            <div class="fw-toolbar">
+              <span class="fw-toolbar__label">Basic building · Cube</span>
+              <span class="fw-rule--v"></span>
+              <button class="fw-iconbtn" aria-label="Freeform"><svg class="fw-icon"><use href="#fw-i-pen"/></svg></button>
+              <button class="fw-iconbtn is-active" aria-label="Cube"><svg class="fw-icon"><use href="#fw-i-grid"/></svg></button>
+              <button class="fw-iconbtn" aria-label="Trace"><svg class="fw-icon"><use href="#fw-i-select"/></svg></button>
+              <span class="fw-rule--v"></span>
+              <button class="fw-iconbtn" aria-label="Exit tool"><svg class="fw-icon"><use href="#fw-i-x"/></svg></button>
+            </div>
+            <span class="sg-spec">morphed state while drawing · Esc exits</span>
+          </div>
+          <div class="sg-row">
+            <div class="fw-viewbar">
+              <div class="fw-seg fw-seg--sm"><button class="fw-seg__btn">2D</button><button class="fw-seg__btn is-active">3D</button></div>
+              <span class="fw-rule--v"></span>
+              <button class="fw-iconbtn" aria-label="North up"><svg class="fw-icon"><use href="#fw-i-compass"/></svg></button>
+              <button class="fw-iconbtn" aria-label="Camera positions"><svg class="fw-icon"><use href="#fw-i-camera"/></svg></button>
+              <button class="fw-iconbtn" aria-label="Display options"><svg class="fw-icon"><use href="#fw-i-sliders"/></svg></button>
+              <span class="fw-rule--v"></span>
+              <div class="fw-seg fw-seg--sm"><button class="fw-seg__btn is-active">Map</button><button class="fw-seg__btn">Sat</button></div>
+            </div>
+            <div class="fw-zoom">
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Zoom out"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-minus"/></svg></button>
+              <button class="fw-zoom__value">100% <svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg></button>
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Zoom in"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Compare tree (checkbox + version rows)</h3>
+        <div class="sg-stage">
+          <div class="fw-tree" style="width: 280px;">
+            <details open>
+              <summary class="fw-tree__row"><svg class="fw-icon fw-icon--sm fw-tree__caret"><use href="#fw-i-chevron"/></svg><svg class="fw-icon fw-icon--sm"><use href="#fw-i-sun"/></svg><span class="fw-tree__label">Sun hours</span></summary>
+              <div class="fw-tree__children">
+                <label class="fw-tree__row is-selected" style="cursor:pointer"><input type="checkbox" class="fw-checkbox" checked><span class="fw-tree__label">Latest version</span><span class="fw-tree__meta">11 Jun</span></label>
+                <label class="fw-tree__row" style="cursor:pointer"><input type="checkbox" class="fw-checkbox"><span class="fw-tree__label">Version</span><span class="fw-tree__meta">02 Jun 13:10</span></label>
+              </div>
+            </details>
+            <details>
+              <summary class="fw-tree__row"><svg class="fw-icon fw-icon--sm fw-tree__caret"><use href="#fw-i-chevron"/></svg><svg class="fw-icon fw-icon--sm"><use href="#fw-i-wind"/></svg><span class="fw-tree__label">Wind</span><span class="fw-tree__meta">1 run</span></summary>
+              <div class="fw-tree__children">
+                <label class="fw-tree__row" style="cursor:pointer"><input type="checkbox" class="fw-checkbox"><span class="fw-tree__label">Latest version</span><span class="fw-tree__meta">28 May</span></label>
+              </div>
+            </details>
+            <details>
+              <summary class="fw-tree__row"><svg class="fw-icon fw-icon--sm fw-tree__caret"><use href="#fw-i-chevron"/></svg><svg class="fw-icon fw-icon--sm"><use href="#fw-i-carbon"/></svg><span class="fw-tree__label">Embodied carbon</span><span class="fw-tree__meta">2 runs</span></summary>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FW-04 DATA DISPLAY ============ -->
+    <section class="sg-section" id="fw-04">
+      <div class="sg-section__head">
+        <span class="sg-section__num">FW-04</span>
+        <h2 class="sg-section__title">Data display</h2>
+        <span class="sg-section__note">mono numerals · rows on 24</span>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Metric rows &amp; stat cards</h3>
+        <p class="sg-sub__usage">The always-on Area metrics block. Hovering a row highlights matching geometry in the canvas — here the hover surface is shown. Sub-rows break a metric down by function.</p>
+        <div class="sg-stage">
+          <div class="sg-row sg-row--start">
+            <div class="fw-metrics" style="width: 288px;">
+              <div class="fw-metric fw-metric--head"><span class="fw-metric__label">Gross floor area</span><span class="fw-metric__value">12,400 m²</span><span class="fw-metric__pct">100%</span></div>
+              <div class="fw-metric fw-metric--sub"><span class="fw-metric__label"><span class="fw-swatch fw-fill--residential"></span>Residential</span><span class="fw-metric__value">9,300 m²</span><span class="fw-metric__pct">75%</span></div>
+              <div class="fw-metric fw-metric--sub"><span class="fw-metric__label"><span class="fw-swatch fw-fill--commercial"></span>Commercial</span><span class="fw-metric__value">3,100 m²</span><span class="fw-metric__pct">25%</span></div>
+              <div class="fw-metric"><span class="fw-metric__label">Building coverage</span><span class="fw-metric__value">2,840 m²</span><span class="fw-metric__pct">23%</span></div>
+              <div class="fw-metric"><span class="fw-metric__label">Floor area ratio</span><span class="fw-metric__value">1.8</span><span class="fw-metric__pct"></span></div>
+              <div class="fw-metric"><span class="fw-metric__label">Rentable area</span><span class="fw-metric__value">10,540 m²</span><span class="fw-metric__pct">85%</span></div>
+            </div>
+            <div class="fw-statcard" style="width: 288px;">
+              <span class="fw-caps fw-muted">Proposal 2 — summary</span>
+              <div class="fw-stat-grid">
+                <div class="fw-stat"><span class="fw-stat__value">12,400 m²</span><span class="fw-stat__label">Gross floor area</span></div>
+                <div class="fw-stat"><span class="fw-stat__value">1.8</span><span class="fw-stat__label">Floor area ratio</span></div>
+                <div class="fw-stat"><span class="fw-stat__value">52%</span><span class="fw-stat__label">Site &gt; 9 h sun</span></div>
+                <div class="fw-stat"><span class="fw-stat__value">29</span><span class="fw-stat__label">Living units</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Floating analysis card</h3>
+        <p class="sg-sub__usage">Lives inside compare panes and over the canvas. Header takes export / overflow / close; the overflow menu is posed open on the right example.</p>
+        <div class="sg-stage sg-stage--canvas">
+          <div class="sg-row sg-row--start" style="gap: 48px;">
+            <div class="fw-floatcard">
+              <div class="fw-floatcard__header">
+                <span class="fw-floatcard__title"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-grid"/></svg>Area metrics</span>
+                <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Export"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-export"/></svg></button>
+                <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+                <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Close"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-x"/></svg></button>
+              </div>
+              <div class="fw-floatcard__body">
+                <div class="fw-field-row"><label>Analysis area</label><span class="fw-chip">Selection (1)<button class="fw-chip__x" aria-label="Clear"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-x"/></svg></button></span></div>
+                <div class="fw-metrics">
+                  <div class="fw-metric"><span class="fw-metric__label">Site area</span><span class="fw-metric__value">1,222 m²</span><span class="fw-metric__pct"></span></div>
+                  <div class="fw-metric"><span class="fw-metric__label">BYA</span><span class="fw-metric__value">264 m²</span><span class="fw-metric__pct">21%</span></div>
+                  <div class="fw-metric"><span class="fw-metric__label">BTA</span><span class="fw-metric__value">2,300 m²</span><span class="fw-metric__pct">100%</span></div>
+                  <div class="fw-metric"><span class="fw-metric__label">BRA</span><span class="fw-metric__value">2,235 m²</span><span class="fw-metric__pct">95%</span></div>
+                  <div class="fw-metric"><span class="fw-metric__label">BRAS</span><span class="fw-metric__value">1,993 m²</span><span class="fw-metric__pct"></span></div>
+                  <div class="fw-metric"><span class="fw-metric__label">Living units</span><span class="fw-metric__value">29</span><span class="fw-metric__pct"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="fw-anchor is-open" style="align-self: flex-start;">
+              <div class="fw-floatcard" style="width: 240px;">
+                <div class="fw-floatcard__header">
+                  <span class="fw-floatcard__title">Area metrics</span>
+                  <button class="fw-iconbtn fw-iconbtn--sm is-active" data-fw-menu aria-label="Export"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-export"/></svg></button>
+                </div>
+                <div class="fw-floatcard__body"><span class="fw-caption">…</span></div>
+              </div>
+              <div class="fw-anchor__pop fw-anchor__pop--br" style="top: 40px;">
+                <div class="fw-menu">
+                  <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-export"/></svg>Export building metrics</button>
+                  <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-grid"/></svg>Show schedules</button>
+                  <hr class="fw-menu__rule">
+                  <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-gear"/></svg>Settings</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Table with inline bars</h3>
+        <div class="sg-stage">
+          <table class="fw-table" style="max-width: 480px;">
+            <thead><tr><th>System</th><th class="fw-table__num">kgCO₂e/m²</th><th></th><th class="fw-table__num">%</th></tr></thead>
+            <tbody>
+              <tr><td>Envelope</td><td class="fw-table__num">140</td><td><span class="fw-bar"><span class="fw-bar__fill" style="width: 24%"></span></span></td><td class="fw-table__num">24</td></tr>
+              <tr><td>Structure</td><td class="fw-table__num">700</td><td><span class="fw-bar"><span class="fw-bar__fill" style="width: 46%"></span></span></td><td class="fw-table__num">46</td></tr>
+              <tr><td>Interiors</td><td class="fw-table__num">150</td><td><span class="fw-bar"><span class="fw-bar__fill" style="width: 16%"></span></span></td><td class="fw-table__num">16</td></tr>
+              <tr><td>MEP systems</td><td class="fw-table__num">100</td><td><span class="fw-bar"><span class="fw-bar__fill" style="width: 14%"></span></span></td><td class="fw-table__num">14</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Badges · avatars · members</h3>
+        <div class="sg-stage">
+          <div class="sg-row">
+            <span class="fw-badge">Beta</span>
+            <span class="fw-badge fw-badge--outline">Draft</span>
+            <span class="fw-badge fw-badge--inverse">New</span>
+            <span class="fw-badge fw-badge--dot">Processing</span>
+            <span class="fw-badge fw-badge--outline fw-badge--dot">Ready</span>
+          </div>
+          <div class="sg-row">
+            <span class="fw-avatar">SR</span>
+            <span class="fw-avatar fw-avatar--md">AK</span>
+            <span class="fw-avatar fw-avatar--inverse">+3</span>
+            <div class="fw-avatarstack"><span class="fw-avatar">SR</span><span class="fw-avatar">AK</span><span class="fw-avatar">MB</span><span class="fw-avatar fw-avatar--inverse">+2</span></div>
+          </div>
+          <div style="max-width: 480px; display: flex; flex-direction: column; gap: 8px;">
+            <div class="fw-member">
+              <span class="fw-avatar fw-avatar--md">SR</span>
+              <span class="fw-member__id"><span class="fw-member__name">Stephen Royce</span><span class="fw-member__mail">hello@stephenroyce.com</span></span>
+              <div class="fw-selectwrap"><select class="fw-select fw-select--sm"><option>Admin</option><option>Collaborator</option><option>Viewer</option></select><svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg></div>
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+            </div>
+            <div class="fw-member">
+              <span class="fw-avatar fw-avatar--md">AK</span>
+              <span class="fw-member__id"><span class="fw-member__name">Astrid Kram</span><span class="fw-member__mail">astrid@studio.no</span></span>
+              <div class="fw-selectwrap"><select class="fw-select fw-select--sm"><option>Collaborator</option><option>Admin</option><option>Viewer</option></select><svg class="fw-icon fw-icon--sm"><use href="#fw-i-chevron"/></svg></div>
+              <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Cards</h3>
+        <div class="sg-stage">
+          <div class="sg-row sg-row--start">
+            <a class="fw-card fw-projcard" href="#fw-04" style="width: 264px;">
+              <div class="fw-projcard__thumb">
+                <svg viewBox="0 0 160 112"><use href="#fw-site-mini"/></svg>
+                <span class="fw-badge fw-projcard__badge fw-badge--dot">Processing</span>
+              </div>
+              <div class="fw-projcard__body">
+                <span class="fw-projcard__name">Nordhavn Waterfront</span>
+                <span class="fw-projcard__meta">Oslo, NO · Edited 2 d ago</span>
+                <div class="fw-projcard__foot">
+                  <div class="fw-avatarstack"><span class="fw-avatar">SR</span><span class="fw-avatar">AK</span></div>
+                  <button class="fw-iconbtn fw-iconbtn--sm" aria-label="More"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-dots-h"/></svg></button>
+                </div>
+              </div>
+            </a>
+            <div class="sg-col">
+              <div class="fw-card fw-libcard">
+                <div class="fw-libcard__thumb"><svg class="fw-icon"><use href="#fw-i-building"/></svg><span class="fw-badge fw-libcard__badge">Ready</span></div>
+                <span class="fw-libcard__name">Buildings — OSM</span>
+              </div>
+              <span class="sg-spec">library card</span>
+            </div>
+            <div class="sg-col" style="width: 288px;">
+              <div class="fw-card fw-extcard">
+                <span class="fw-extcard__icon"><svg class="fw-icon"><use href="#fw-i-puzzle"/></svg></span>
+                <span class="fw-extcard__info"><span class="fw-extcard__name">Parking layout</span><span class="fw-extcard__dev">Third-party · v2.4</span></span>
+                <button class="fw-btn fw-btn--sm fw-btn--secondary">Add</button>
+              </div>
+              <span class="sg-spec">extension card</span>
+            </div>
+            <a class="fw-card fw-card--new" href="#fw-04" style="width: 264px;">
+              <svg class="fw-icon"><use href="#fw-i-plus"/></svg>
+              <span class="fw-text-sm">New project</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Analysis graphics</h3>
+        <p class="sg-sub__usage">Histogram bars sit on 8px heights; hatched bars are filtered out by the legend range. The legend bar's square handles drag (JS) — masks pose statically without it. Wind rose wedge length = frequency; fills follow the Lawson key.</p>
+        <div class="sg-stage">
+          <div class="sg-row sg-row--start" style="gap: 48px;">
+            <div class="sg-col" style="width: 288px;">
+              <div class="fw-hist">
+                <div class="fw-hist__bars">
+                  <div class="fw-hist__bar is-muted" style="height: 8px"></div>
+                  <div class="fw-hist__bar is-muted" style="height: 16px"></div>
+                  <div class="fw-hist__bar" style="height: 16px"></div>
+                  <div class="fw-hist__bar" style="height: 24px"></div>
+                  <div class="fw-hist__bar" style="height: 32px"></div>
+                  <div class="fw-hist__bar" style="height: 40px"></div>
+                  <div class="fw-hist__bar" style="height: 48px"></div>
+                  <div class="fw-hist__bar is-active" style="height: 64px"></div>
+                  <div class="fw-hist__bar" style="height: 56px"></div>
+                  <div class="fw-hist__bar" style="height: 40px"></div>
+                  <div class="fw-hist__bar" style="height: 32px"></div>
+                  <div class="fw-hist__bar" style="height: 24px"></div>
+                  <div class="fw-hist__bar" style="height: 16px"></div>
+                  <div class="fw-hist__bar" style="height: 8px"></div>
+                  <div class="fw-hist__bar" style="height: 8px"></div>
+                </div>
+                <div class="fw-hist__axis"><span>0 h</span><span>5 h</span><span>10 h</span></div>
+              </div>
+              <span class="sg-spec">histogram · direct sun on ground</span>
+            </div>
+            <div class="sg-col">
+              <div class="fw-legendbar">
+                <div class="fw-legendbar__title"><span><strong>Sun hours</strong> · h on ground</span><span class="fw-mono">21 Jun</span></div>
+                <div class="fw-legendbar__track">
+                  <div class="fw-legendbar__strip"><span class="fw-band-1"></span><span class="fw-band-2"></span><span class="fw-band-3"></span><span class="fw-band-4"></span><span class="fw-band-5"></span></div>
+                  <div class="fw-legendbar__mask" style="left: 0; width: 20%;"></div>
+                  <div class="fw-legendbar__handle" style="left: 20%;"></div>
+                  <div class="fw-legendbar__handle" style="left: 100%;"></div>
+                </div>
+                <div class="fw-legendbar__ticks"><span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span></div>
+              </div>
+              <span class="sg-spec">gradient legend · range handles filter the heatmap</span>
+            </div>
+          </div>
+          <hr class="fw-rule">
+          <div class="sg-row sg-row--start" style="gap: 48px;">
+            <div class="sg-col">
+              <div class="fw-chartrow">
+                <svg class="fw-windrose" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="16" fill="none" stroke="var(--fw-g200)" stroke-dasharray="2 3"/>
+                  <circle cx="60" cy="60" r="32" fill="none" stroke="var(--fw-g200)" stroke-dasharray="2 3"/>
+                  <circle cx="60" cy="60" r="48" fill="none" stroke="var(--fw-g200)" stroke-dasharray="2 3"/>
+                  <path d="M60 60 L44.7 23 A40 40 0 0 1 75.3 23 Z" fill="var(--fw-g500)"/>
+                  <path d="M60 60 L70.7 34.1 A28 28 0 0 1 85.9 49.3 Z" fill="var(--fw-g300)"/>
+                  <path d="M60 60 L78.5 52.3 A20 20 0 0 1 78.5 67.7 Z" fill="var(--fw-g200)"/>
+                  <path d="M60 60 L84 70 A26 26 0 0 1 70 84 Z" fill="var(--fw-g400)"/>
+                  <path d="M60 60 L76.8 100.7 A44 44 0 0 1 43.2 100.7 Z" fill="var(--fw-g700)"/>
+                  <path d="M60 60 L40.1 108 A52 52 0 0 1 12 79.9 Z" fill="var(--fw-g900)"/>
+                  <path d="M60 60 L26.7 73.8 A36 36 0 0 1 26.7 46.2 Z" fill="var(--fw-g600)"/>
+                  <path d="M60 60 L37.8 50.8 A24 24 0 0 1 50.8 37.8 Z" fill="var(--fw-g400)"/>
+                  <text x="60" y="10" text-anchor="middle" font-size="9" font-family="var(--fw-font-mono)" fill="var(--fw-g600)">N</text>
+                </svg>
+                <div class="fw-key">
+                  <div class="fw-key__row"><span class="fw-swatch fw-band-5"></span><span class="fw-key__label">SW — prevailing</span><span class="fw-key__value">26%</span></div>
+                  <div class="fw-key__row"><span class="fw-swatch fw-band-4"></span><span class="fw-key__label">S</span><span class="fw-key__value">22%</span></div>
+                  <div class="fw-key__row"><span class="fw-swatch fw-band-3"></span><span class="fw-key__label">N</span><span class="fw-key__value">20%</span></div>
+                  <div class="fw-key__row"><span class="fw-swatch fw-band-2"></span><span class="fw-key__label">Other</span><span class="fw-key__value">32%</span></div>
+                </div>
+              </div>
+              <span class="sg-spec">wind rose · 8 wedges, length = frequency</span>
+            </div>
+            <div class="sg-col">
+              <div class="fw-chartrow">
+                <svg class="fw-donut" viewBox="0 0 96 96">
+                  <circle cx="48" cy="48" r="32" fill="none" stroke="var(--fw-g150)" stroke-width="12"/>
+                  <circle cx="48" cy="48" r="32" fill="none" stroke="var(--fw-g900)" stroke-width="12" stroke-dasharray="104.6 201.1" transform="rotate(-90 48 48)"/>
+                  <circle cx="48" cy="48" r="32" fill="none" stroke="var(--fw-g500)" stroke-width="12" stroke-dasharray="52.3 201.1" transform="rotate(97.2 48 48)"/>
+                  <circle cx="48" cy="48" r="32" fill="none" stroke="var(--fw-g300)" stroke-width="12" stroke-dasharray="28.2 201.1" transform="rotate(190.8 48 48)"/>
+                  <text x="48" y="45" text-anchor="middle" font-size="14" font-weight="600" font-family="var(--fw-font-mono)" fill="var(--fw-g900)">52%</text>
+                  <text x="48" y="58" text-anchor="middle" font-size="8" font-family="var(--fw-font-ui)" fill="var(--fw-g600)">sitting</text>
+                </svg>
+                <div class="fw-key">
+                  <div class="fw-key__row"><span class="fw-swatch fw-band-5"></span><span class="fw-key__label">Sitting</span><span class="fw-key__value">52%</span></div>
+                  <div class="fw-key__row"><span class="fw-swatch fw-band-3"></span><span class="fw-key__label">Standing</span><span class="fw-key__value">26%</span></div>
+                  <div class="fw-key__row"><span class="fw-swatch fw-band-2"></span><span class="fw-key__label">Strolling</span><span class="fw-key__value">14%</span></div>
+                  <div class="fw-key__row"><span class="fw-swatch" style="background: var(--fw-g150)"></span><span class="fw-key__label">Other</span><span class="fw-key__value">8%</span></div>
+                </div>
+              </div>
+              <span class="sg-spec">donut · wind comfort on ground</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Progress · notes · empty · toast · checklist</h3>
+        <div class="sg-stage">
+          <div class="sg-row sg-row--start" style="gap: 48px;">
+            <div class="sg-col" style="width: 288px;">
+              <div class="fw-progress-row">
+                <div class="fw-progress-row__label"><span>Terrain processing</span><span class="fw-mono">64%</span></div>
+                <div class="fw-progress"><div class="fw-progress__fill" style="width: 64%"></div></div>
+              </div>
+              <div class="fw-progress-row">
+                <div class="fw-progress-row__label"><span>Running daylight potential…</span><span class="fw-mono">~5 min</span></div>
+                <div class="fw-progress fw-progress--indet"><div class="fw-progress__fill"></div></div>
+              </div>
+              <div class="fw-note">
+                <svg class="fw-icon fw-icon--sm"><use href="#fw-i-alert"/></svg>
+                <div><div class="fw-note__title">Unsupported buildings</div><div class="fw-note__body">2 buildings in your selection are not supported by this analysis: 3D sketch objects and imported meshes.</div></div>
+              </div>
+              <div class="fw-toast"><span>Sun hours analysis finished</span><a class="fw-toast__action" href="#fw-04">View</a><button class="fw-iconbtn fw-iconbtn--sm" data-fw-dismiss aria-label="Dismiss"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-x"/></svg></button></div>
+            </div>
+            <div class="fw-empty" style="width: 288px;">
+              <span class="fw-empty__icon"><svg class="fw-icon"><use href="#fw-i-plus"/></svg></span>
+              <span class="fw-empty__title">No analyses yet</span>
+              <span class="fw-empty__desc">Select or drag analyses from the left panel to compare proposals side by side.</span>
+            </div>
+            <div class="fw-checklist">
+              <div class="fw-checklist__header">
+                <div class="fw-checklist__title"><strong>Add from Site Design</strong><span>20% complete</span></div>
+                <button class="fw-iconbtn fw-iconbtn--sm" aria-label="Close"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-x"/></svg></button>
+              </div>
+              <div class="fw-checklist__steps">
+                <div class="fw-checklist__step is-done"><span class="fw-checklist__num"><svg class="fw-icon fw-icon--sm" style="width:12px;height:12px"><use href="#fw-i-check"/></svg></span>Open the Site Design tab</div>
+                <div class="fw-checklist__step"><span class="fw-checklist__num">2</span>Pick a proposal</div>
+                <div class="fw-checklist__step"><span class="fw-checklist__num">3</span>Drag widgets onto the board</div>
+                <div class="fw-checklist__step"><span class="fw-checklist__num">4</span>Annotate and mark up</div>
+                <div class="fw-checklist__step"><span class="fw-checklist__num">5</span>Share your board</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FW-05 OVERLAYS ============ -->
+    <section class="sg-section" id="fw-05">
+      <div class="sg-section__head">
+        <span class="sg-section__num">FW-05</span>
+        <h2 class="sg-section__title">Overlays</h2>
+        <span class="sg-section__note">flyout 40 · modal 70 · toast 80</span>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Tooltip · menu · context menu</h3>
+        <div class="sg-stage">
+          <div class="sg-row sg-row--start" style="gap: 48px;">
+            <div class="sg-col">
+              <span class="fw-tooltip">Show north up</span>
+              <span class="fw-tooltip">Repeat last tool <span class="fw-kbd">Space</span></span>
+              <span class="sg-spec">tooltips</span>
+            </div>
+            <div class="sg-col">
+              <div class="fw-menu">
+                <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-plus"/></svg>Duplicate<span class="fw-kbd">⌘D</span></button>
+                <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-pen"/></svg>Rename</button>
+                <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-export"/></svg>Send to Revit<span class="fw-badge fw-badge--outline">Beta</span></button>
+                <hr class="fw-menu__rule">
+                <button class="fw-menu__item fw-menu__item--danger"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-alert"/></svg>Delete proposal</button>
+              </div>
+              <span class="sg-spec">proposal context menu</span>
+            </div>
+            <div class="sg-col">
+              <div class="fw-popover" style="width: 240px;">
+                <div class="sg-col" style="gap: 8px;">
+                  <span class="fw-caps fw-muted">Display options</span>
+                  <div class="fw-field-row"><label>Shadows</label><button class="fw-switch" role="switch" aria-checked="true" aria-label="Shadows"></button></div>
+                  <div class="fw-field-row"><label>Contour lines</label><button class="fw-switch" role="switch" aria-checked="false" aria-label="Contour lines"></button></div>
+                  <div class="fw-field-row"><label>Date</label><span class="fw-chip"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-calendar"/></svg>Jun 21</span></div>
+                  <div>
+                    <input type="range" class="fw-slider" min="0" max="100" value="55" aria-label="Time of day">
+                    <div class="fw-slider-meta"><span>06:00</span><span>13:12</span><span>21:00</span></div>
+                  </div>
+                </div>
+              </div>
+              <span class="sg-spec">display-options flyout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Modal</h3>
+        <div class="sg-stage" style="padding: 0;">
+          <div style="position: relative; min-height: 440px;">
+            <div class="fw-scrim fw-scrim--static" style="border-radius: var(--fw-r-md);">
+              <div class="fw-modal" role="dialog" aria-labelledby="sg-modal-title">
+                <div class="fw-modal__header">
+                  <span class="fw-modal__title" id="sg-modal-title">New project</span>
+                  <button class="fw-iconbtn" aria-label="Close"><svg class="fw-icon"><use href="#fw-i-x"/></svg></button>
+                </div>
+                <div class="fw-modal__body">
+                  <div class="fw-field">
+                    <label class="fw-label" for="sg-m1">Project name</label>
+                    <input id="sg-m1" class="fw-input" placeholder="e.g. Nordhavn Waterfront">
+                  </div>
+                  <div class="fw-field">
+                    <label class="fw-label" for="sg-m2">Location</label>
+                    <div class="fw-search"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-pin"/></svg><input id="sg-m2" class="fw-input" placeholder="Address, area or coordinates"></div>
+                  </div>
+                  <div class="fw-field">
+                    <span class="fw-label">Order data</span>
+                    <label class="fw-check-label"><input type="checkbox" class="fw-checkbox" checked> Buildings &amp; terrain</label>
+                    <label class="fw-check-label"><input type="checkbox" class="fw-checkbox" checked> Roads</label>
+                    <label class="fw-check-label"><input type="checkbox" class="fw-checkbox"> Property boundaries</label>
+                  </div>
+                </div>
+                <div class="fw-modal__footer">
+                  <button class="fw-btn fw-btn--ghost">Cancel</button>
+                  <button class="fw-btn fw-btn--primary">Create project</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Command palette — “Quick access”</h3>
+        <p class="sg-sub__usage">Searchable commands with shortcut keycaps. On demo pages, press <span class="fw-kbd">/</span> to open the live one.</p>
+        <div class="sg-stage" style="align-items: center;">
+          <div class="fw-palette">
+            <div class="fw-palette__search">
+              <svg class="fw-icon"><use href="#fw-i-search"/></svg>
+              <input class="fw-palette__input" placeholder="Search commands…" value="bui">
+              <span class="fw-kbd">esc</span>
+            </div>
+            <div class="fw-palette__list">
+              <div class="fw-menu__label">Design tools</div>
+              <button class="fw-menu__item is-active"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-building"/></svg>Basic building<span class="fw-kbd">B</span></button>
+              <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-line-building"/></svg>Line building</button>
+              <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-house"/></svg>House</button>
+              <div class="fw-menu__label">Commands</div>
+              <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-history"/></svg>Repeat last tool<span class="fw-kbd">Space</span></button>
+              <button class="fw-menu__item"><svg class="fw-icon fw-icon--sm"><use href="#fw-i-inspect"/></svg>Inspect values<span class="fw-kbd">I</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FW-06 CANVAS & BOARD ============ -->
+    <section class="sg-section" id="fw-06">
+      <div class="sg-section__head">
+        <span class="sg-section__num">FW-06</span>
+        <h2 class="sg-section__title">Canvas &amp; board elements</h2>
+        <span class="sg-section__note">drafting layer</span>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Drawing feedback</h3>
+        <p class="sg-sub__usage">Dimension input rides the cursor while drawing; snap lines are dashed with square terminals; selected geometry takes corner handles; inspect points pin mono values to the heatmap.</p>
+        <div class="sg-stage sg-stage--canvas sg-stage--tall" style="position: relative;">
+          <div style="position: absolute; left: 48px; top: 48px; width: 160px; height: 104px; background: var(--fw-g0); border: 2px solid var(--fw-g1000);">
+            <span class="fw-handle" style="left: 0; top: 0;"></span>
+            <span class="fw-handle" style="left: 100%; top: 0;"></span>
+            <span class="fw-handle" style="left: 0; top: 100%;"></span>
+            <span class="fw-handle" style="left: 100%; top: 100%;"></span>
+          </div>
+          <span class="fw-dim" style="position: absolute; left: 232px; top: 88px;">24.0 m</span>
+          <div class="fw-snap" style="left: 48px; top: 184px; width: 280px;"></div>
+          <div class="fw-inspect" style="left: 400px; top: 96px;">
+            <span class="fw-inspect__dot"></span>
+            <span class="fw-inspect__tag">4.2 h</span>
+          </div>
+          <span class="fw-tooltip" style="position: absolute; left: 400px; top: 176px;">elev. +12.4 m</span>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <h3 class="sg-sub__title">Board pieces</h3>
+        <div class="sg-stage" style="position: relative; min-height: 320px; background-color: var(--fw-bg-app); background-image: linear-gradient(var(--fw-g150) 1px, transparent 1px), linear-gradient(90deg, var(--fw-g150) 1px, transparent 1px); background-size: 32px 32px;">
+          <div class="fw-boardframe" style="left: 32px; top: 48px; width: 224px; height: 176px;">
+            <span class="fw-boardframe__label">Frame 1 · Proposal 2 — Sun hours</span>
+            <div class="fw-boardframe__body">
+              <svg viewBox="0 0 160 112" style="width: 100%; height: auto;"><use href="#fw-site-mini"/></svg>
+            </div>
+          </div>
+          <div class="fw-sticky fw-sticky--tilt" style="position: absolute; left: 296px; top: 64px;">Push entry to the south corner?</div>
+          <div class="fw-sticky fw-fill--dots" style="position: absolute; left: 360px; top: 144px;">Check noise by the rail line</div>
+          <div class="fw-commentpin" style="left: 480px; top: 80px;"><span class="fw-avatar">AK</span></div>
+          <div class="fw-toolbar" style="position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%);">
+            <button class="fw-iconbtn is-active" aria-label="Select"><svg class="fw-icon"><use href="#fw-i-select"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Pan"><svg class="fw-icon"><use href="#fw-i-move"/></svg></button>
+            <span class="fw-rule--v"></span>
+            <button class="fw-iconbtn" aria-label="Sticky note"><svg class="fw-icon"><use href="#fw-i-sticky"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Pen"><svg class="fw-icon"><use href="#fw-i-pen"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Text"><svg class="fw-icon"><use href="#fw-i-text"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Arrow"><svg class="fw-icon"><use href="#fw-i-arrow-ne"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Shapes"><svg class="fw-icon"><use href="#fw-i-shapes"/></svg></button>
+            <button class="fw-iconbtn" aria-label="Frame"><svg class="fw-icon"><use href="#fw-i-frame"/></svg></button>
+            <span class="fw-rule--v"></span>
+            <button class="fw-iconbtn" aria-label="Comment"><svg class="fw-icon"><use href="#fw-i-comment"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <footer class="sg-footer">
+        <span>FW · Forma Wireframe Kit — grayscale only, 8px grid</span>
+        <span>view-source for markup · demos are the copy source of record</span>
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/shared.js"></script>
+</body>
+</html>
