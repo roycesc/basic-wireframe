@@ -135,6 +135,24 @@ grep -nE '#[0-9a-fA-F]{3,8}' css/components.css css/app.css css/base.css css/sty
 # 5. 8px audit — press `g` on any page (checkbox on index.html), eyeball alignment
 ```
 
+## Case study prototype — "From Compare to Board"
+
+A 4-screen click-through narrative built from the kit for a design presentation. Concept:
+*a site proposal should carry its analysis, trade-offs, feedback, rationale and agreement
+as it moves from Compare to Board and back into the site proposal.*
+
+Start at [`prototype/01-compare.html`](prototype/01-compare.html) and follow the primary
+buttons (or use ← → arrow keys):
+
+1. **Compare** — three massing alternatives, criteria table, insight → *Frame for Review*
+2. **Frame for Review** — decision question, alternatives, criteria, recommended direction,
+   requested response → *Send to Board*
+3. **Board Review** — decision frame, feedback, agreement state → *Return rationale to site proposal*
+4. **Site Proposal with Rationale** — the Design intent panel: status, rationale, accepted
+   trade-offs, contributors, decision history
+
+> The decision travels with the site proposal, not the meeting.
+
 ---
 
 *FW kit · grayscale only · 8px grid · inspired by, not affiliated with, Autodesk Forma.*
