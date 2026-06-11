@@ -143,19 +143,25 @@ grep -nE '#[0-9a-fA-F]{3,8}' css/components.css css/app.css css/base.css css/sty
 
 ## Case study prototype — "From Compare to Board"
 
-A 4-screen click-through narrative built from the kit for a design presentation. Concept:
-*a site proposal should carry its analysis, trade-offs, feedback, rationale and agreement
-as it moves from Compare to Board and back into the site proposal.*
+A 6-screen click-through narrative built from the kit for a design presentation. The
+whole flow lives inside the Board surface. Concept: *a site proposal should carry its
+analysis, trade-offs, feedback, rationale and agreement as it moves from Compare to
+Board and back into the site proposal.*
 
 Open [`prototype/`](prototype/index.html) — it lands on Screen 1 — and follow the primary
 buttons (or use ← → arrow keys). While presenting, every click flashes a red ring around
 the clicked control so the audience can follow — press <kbd>r</kbd> to toggle it off.
 
-1. **Compare** — three massing alternatives, criteria table, insight → *Frame for Review*
-2. **Frame for Review** — decision question, alternatives, criteria, recommended direction,
-   requested response → *Send to Board*
-3. **Board Review** — decision frame, feedback, agreement state → *Return rationale to site proposal*
-4. **Site Proposal with Rationale** — the Design intent panel: status, rationale, accepted
+1. **Board** — the team's working board, with a new *Compare* entry in the source rail
+2. **Decide** — the Compare panel opens: *Compare / Decide* menu, select proposals,
+   criteria → *Compare 3 proposals*
+3. **Compare** — modal over the board: three massing alternatives, criteria table,
+   insight → *Frame for Review*
+4. **Frame for Review** — modal: decision question, alternatives, criteria, recommended
+   direction, requested response → *Create Frame for Review*
+5. **Board Review** — the decision frame on the board: feedback, agreement state →
+   *Save Decision Results*
+6. **Site Proposal with Rationale** — the Design intent panel: status, rationale, accepted
    trade-offs, contributors, decision history
 
 > The decision travels with the site proposal, not the meeting.

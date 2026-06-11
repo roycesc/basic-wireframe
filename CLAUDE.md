@@ -36,9 +36,10 @@ js/shared.js         progressive enhancement: tabs, flyouts, modal, palette (/),
 assets/sprite.svg    CANONICAL icon sprite + SVG pattern defs — see "Sprite rule"
 index.html           living style guide (sheets FW-00..FW-06)
 demos/*.html         dashboard, editor, analysis, compare, board
-prototype/           index.html (redirect → 01) + 01-compare, 02-frame, 03-board,
-                     04-proposal
+prototype/           index.html (redirect → 01) + 01-board, 02-decide, 03-compare,
+                     04-frame, 05-review, 06-proposal
 docs/screenshots/    14 JPEG captures: styleguide-{1..5}-of-5, 5 demos, proto-0{1..4}
+                     (proto captures are STALE — show the old 4-screen flow)
 screenshots/         Stephen's reference captures of the REAL Forma product (committed)
 ```
 
@@ -68,8 +69,8 @@ screenshots/         Stephen's reference captures of the REAL Forma product (com
 
 External `<use href="sprite.svg#id">` is **blocked over `file://`**, so an identical
 copy of the sprite block is embedded as the **first child of `<body>` in every page**
-(11 copies: canonical `assets/sprite.svg` + index + 5 demos + 4 prototype screens;
-prototype pages carry a trimmed subset). After editing an icon, re-apply to all copies —
+(13 copies: canonical `assets/sprite.svg` + index + 5 demos + 6 prototype screens;
+prototype pages carry a trimmed subset, byte-identical across all 6). After editing an icon, re-apply to all copies —
 fixed-string `perl -pi -e 's{\Q<old line>\E}{<new line>}g' <files>` works because the
 lines are byte-identical; verify with grep counts.
 
@@ -90,37 +91,62 @@ grep -nE '#[0-9a-fA-F]{3,8}' css/components.css css/app.css css/base.css css/sty
 **Stephen merges PRs himself** (sometimes from his phone — don't merge for him, don't
 be surprised if origin/main moves). Commit messages end with the Claude co-author
 footer. History: PR #1 reference screenshots (merged), PR #2 README gallery (merged),
-**PR #3 the prototype — OPEN** (branch `proto-compare-to-board`, commits: prototype +
-fw-steps, menu z-fix + Autodesk logo swap, presenter click ring, landing redirect).
+PR #3 the original 4-screen prototype (merged), **PR #4 the Board-first rebuild —
+OPEN** (branch `proto-compare-to-board`).
 
 ## The prototype ("From Compare to Board") — current design
 
 Concept (interview narrative): *a site proposal should carry its analysis, trade-offs,
 feedback, rationale and agreement as it moves from Compare to Board and back.* Closing
 line: **"The decision travels with the site proposal, not the meeting."**
+Since 2026-06-11 the flow **starts inside the Board page** (modeled on Stephen's
+screen grab of the real Forma Board) and runs Compare/Frame as modals over it.
 
 Flow and what's on each screen:
 
-1. **01-compare.html** — Compare: 3 option cards (A Perimeter block, B Twin towers,
-   C Stepped courtyard = recommended), criteria table (Daylight/Density/Carbon/Planning
-   risk, Option C column highlighted), insight note → button **Frame for Review**.
-2. **02-frame.html** — Frame for Review (640px column): decision question input,
-   alternative + criteria chips, recommended-direction select (Option C), key trade-off
-   textarea, requested-response checkboxes → **Send to Board** (ghost: Back to Compare).
-3. **03-board.html** — Board review: decision frame on the 32px board grid — question,
-   3 snapshot cards, trade-off summary, 2 feedback comments (Astrid Kram, client rep;
-   Marta Boel, sustainability consultant), agreement "2 of 3 aligned" with Risk flagged
-   badge → **Return rationale to site proposal**.
-4. **04-proposal.html** — Proposal 2 — Option C with **Design intent** panel: Agreed
+1. **01-board.html** — Board page (app shell: board appbar, labeled rail, toolbar,
+   zoom) with a **new Compare rail button** under Site → links to 02. Rail buttons
+   Site/Data/Image are inert `<button>`s; Compare is an `<a>`. The canvas carries a
+   left-column board scene matching demos/board.html (Frame 1 sun-hours widget,
+   Frame 2 key metrics, 2 stickies, AK comment pin at x 96–440) — identical on 01–05.
+2. **02-decide.html** — same board + TWO adjacent `fw-panel--left` panels, both
+   **absolutely positioned overlays** (left: rail / rail+panel widths, top/bottom 0,
+   `fw-app__main` is position:relative) so they COVER the canvas content instead of
+   pushing it right — the board scene keeps the exact same coordinates as 01.
+   (Mirrors the real app's Site Design → proposal-details panels): first = secondary menu only
+   (**Compare / Decide**, Decide `.is-active`; close × → 01), second = tertiary
+   "Decide" panel with the "Decide between proposals" check-list (Options A/B/C
+   checked) + criteria chips + footer CTA **Compare 3 proposals** → 03.
+   The tertiary panel (`#decide-panel`) is posed `.is-open` for JS-off; page-local
+   JS swaps that for **hover on the Decide item** (`#decide-item`, 400ms grace to
+   travel into the panel). On 03/04 both panels are simply posed open.
+3. **03-compare.html** — 02's layout + 880px modal (`fw-scrim is-open`, posed):
+   3 option cards (C = recommended), criteria table (Option C column highlighted),
+   insight note → **Frame for Review** (ghost: Back → 02).
+4. **04-frame.html** — same base + 640px modal: decision question input, alternative +
+   criteria chips, recommended-direction select (Option C), key trade-off textarea,
+   requested-response checkboxes → **Create Frame for Review** (ghost: Back to Compare → 03).
+5. **05-review.html** — board app shell, decision frame ("Frame 3", max 880px,
+   margin-left 448px so it sits BESIDE the existing board scene, never over it) in a
+   scrollable inner div (toolbar/zoom stay pinned as siblings; the board scene lives
+   inside the scroll div so it scrolls with the frame): question, 3 snapshot cards,
+   trade-off summary, 2 feedback comments (Astrid Kram, client rep; Marta Boel,
+   sustainability), agreement "2 of 3 aligned" with Risk flagged badge →
+   **Save Decision Results**. The snapshot cards carry the full option names +
+   daylight/density captions and the **criteria comparison table** from the Compare
+   modal, so the trade-offs read on the board itself.
+6. **06-proposal.html** — Proposal 2 — Option C with **Design intent** panel: Agreed
    status, rationale, accepted trade-offs, contributors, **Open Board review** (loops
-   to 03), **View decision history** (modal `#proto-history`), closing note.
+   to 05), **View decision history** (modal `#proto-history`), closing note.
 
-Mechanics shared by all 4 pages (keep consistent if the flow changes):
+Mechanics shared by all 6 pages (keep consistent if the flow changes):
 
 - **Light chrome:** app bar (Forma chip links to the matching full demo:
-  Compare→`../demos/compare.html`, Board→`board.html`, Site Design→`editor.html`) +
-  `fw-steps` bar (`Compare → Frame → Board → Proposal`; every item is a link;
-  `.is-done` / `.is-current` states are **hardcoded per page**).
+  Board→`../demos/board.html` on 01-05, Site Design→`editor.html` on 06). The
+  `fw-steps` bar (`Board → Decide → Frame → Review → Proposal`) lives **inside the
+  modals only** (03 + 04, between modal header and body) — per Stephen, the steps are
+  part of the popover, not the main screen chrome. Every item is a link; 03 shows
+  Decide as current; `.is-done` / `.is-current` states are **hardcoded per page**.
 - **Arrow-key nav:** tiny inline `<script>` at the bottom of each page hardcodes that
   page's prev/next hrefs.
 - **Entry point:** `prototype/index.html` is a meta-refresh redirect to the first
