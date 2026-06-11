@@ -147,7 +147,7 @@ A 4-screen click-through narrative built from the kit for a design presentation.
 *a site proposal should carry its analysis, trade-offs, feedback, rationale and agreement
 as it moves from Compare to Board and back into the site proposal.*
 
-Start at [`prototype/01-compare.html`](prototype/01-compare.html) and follow the primary
+Open [`prototype/`](prototype/index.html) — it lands on Screen 1 — and follow the primary
 buttons (or use ← → arrow keys). While presenting, every click flashes a red ring around
 the clicked control so the audience can follow — press <kbd>r</kbd> to toggle it off.
 
