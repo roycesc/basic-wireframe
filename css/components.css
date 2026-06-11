@@ -590,7 +590,9 @@
   background: var(--fw-bg-app);
   border-bottom: var(--fw-bw-1) solid var(--fw-line);
   position: relative;
-  z-index: var(--fw-z-panel);
+  /* above rail/panels (z-panel) so menus anchored here aren't clipped by
+     later-DOM siblings at equal z; still below tooltip/modal/toast */
+  z-index: var(--fw-z-flyout);
 }
 .fw-appbar__spacer { flex: 1; }
 .fw-appbar__actions { display: flex; align-items: center; gap: var(--fw-sp-4); }
