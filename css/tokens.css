@@ -44,6 +44,11 @@
   --fw-scrim:       rgba(0, 0, 0, 0.4);
   --fw-scrim-light: rgba(255, 255, 255, 0.6);  /* "excluded" overlay base */
 
+  /* Presenter annotation layer — the ONE sanctioned chromatic value in
+     the kit. Used only by the click ring so narration can never be
+     mistaken for product UI. */
+  --fw-presenter-ring: #e5484d;
+
   /* ---- Spacing (8px grid) ---------------------------------- */
   --fw-sp-4:  4px;   /* half-step: intra-component only */
   --fw-sp-8:  8px;

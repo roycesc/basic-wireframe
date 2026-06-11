@@ -524,6 +524,42 @@
   white-space: nowrap;
 }
 
+/* ================= Steps (flow progress) ================= */
+
+.fw-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fw-sp-8);
+  height: var(--fw-sp-48);
+  background: var(--fw-bg-app);
+  border-bottom: var(--fw-bw-1) solid var(--fw-line);
+}
+.fw-steps__item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fw-sp-4);
+  height: 100%;
+  padding: 0 var(--fw-sp-4);
+  font-size: var(--fw-fs-sm);
+  line-height: var(--fw-lh-sm);
+  color: var(--fw-ink-3);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.fw-steps__item:hover { color: var(--fw-ink); }
+.fw-steps__item.is-done { color: var(--fw-ink-2); }
+.fw-steps__item.is-current { color: var(--fw-ink); font-weight: var(--fw-fw-semibold); }
+.fw-steps__item.is-current::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--fw-g900);
+}
+.fw-steps__sep { display: inline-flex; color: var(--fw-ink-3); }
+
 /* ================= System banner ================= */
 
 .fw-banner {
@@ -554,7 +590,9 @@
   background: var(--fw-bg-app);
   border-bottom: var(--fw-bw-1) solid var(--fw-line);
   position: relative;
-  z-index: var(--fw-z-panel);
+  /* above rail/panels (z-panel) so menus anchored here aren't clipped by
+     later-DOM siblings at equal z; still below tooltip/modal/toast */
+  z-index: var(--fw-z-flyout);
 }
 .fw-appbar__spacer { flex: 1; }
 .fw-appbar__actions { display: flex; align-items: center; gap: var(--fw-sp-4); }
@@ -1598,3 +1636,24 @@ a.fw-card:hover, .fw-card.is-hoverable:hover { border-color: var(--fw-g400); box
   gap: 2px;
 }
 .fw-analyzerow .fw-iconbtn { width: 100%; }
+
+/* ================= Presenter click ring =================
+   Annotation layer for walking someone through a demo: every click
+   flashes a red ring around the clicked control (or the cursor point).
+   The kit's single chromatic element — narration, never product UI.
+   Spawned by shared.js on pointerdown; toggle with `r`. */
+
+.fw-clickring {
+  position: fixed;
+  border: var(--fw-bw-2) solid var(--fw-presenter-ring);
+  border-radius: var(--fw-r-md);
+  pointer-events: none;
+  z-index: var(--fw-z-debug);
+  opacity: 0;
+  animation: fw-clickring 480ms var(--fw-ease) forwards;
+}
+@keyframes fw-clickring {
+  0%   { opacity: 0; transform: scale(0.85); }
+  18%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.3); }
+}

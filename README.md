@@ -106,8 +106,12 @@ screenshots/         reference captures of the real Autodesk Forma product (not 
 
 ### Known trade-offs
 
-- **No red.** Danger actions read through weight + alert icon + inverting hover, and
-  should pair with a confirm modal. Flag this when presenting to stakeholders.
+- **No red in the UI.** Danger actions read through weight + alert icon + inverting
+  hover, and should pair with a confirm modal. Flag this when presenting to
+  stakeholders. The one chromatic exception is the **presenter click ring**
+  (`--fw-presenter-ring`, red): an annotation layer that flashes around whatever you
+  click so an audience can follow along — deliberately outside the grayscale system
+  so narration can't be mistaken for product UI. Press <kbd>r</kbd> to toggle it.
 - **Sprite duplication.** One sprite copy per page (≈90 lines) is the price of
   `file://` portability without a build step.
 - **Canvas scenery is scenery.** The axon scene uses a 2:1 dimetric recipe
@@ -121,7 +125,9 @@ screenshots/         reference captures of the real Autodesk Forma product (not 
 # 1. Serve (or just open index.html directly)
 python3 -m http.server 8077
 
-# 2. Chromatic-color audit — must print nothing (greys have R=G=B)
+# 2. Chromatic-color audit — must print exactly one value: #e5484d, the
+#    presenter click-ring (the single sanctioned chromatic token; see
+#    --fw-presenter-ring in tokens.css). Anything else is a violation.
 grep -rhoE '#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b' css js demos assets index.html | sort -u \
 | perl -ne 'chomp; if(/^#(..)(..)(..)$/){print "$_\n" unless lc$1 eq lc$2 && lc$2 eq lc$3}
             elsif(/^#(.)(.)(.)$/){print "$_\n" unless lc$1 eq lc$2 && lc$2 eq lc$3}'
@@ -134,6 +140,25 @@ grep -nE '#[0-9a-fA-F]{3,8}' css/components.css css/app.css css/base.css css/sty
 
 # 5. 8px audit — press `g` on any page (checkbox on index.html), eyeball alignment
 ```
+
+## Case study prototype — "From Compare to Board"
+
+A 4-screen click-through narrative built from the kit for a design presentation. Concept:
+*a site proposal should carry its analysis, trade-offs, feedback, rationale and agreement
+as it moves from Compare to Board and back into the site proposal.*
+
+Open [`prototype/`](prototype/index.html) — it lands on Screen 1 — and follow the primary
+buttons (or use ← → arrow keys). While presenting, every click flashes a red ring around
+the clicked control so the audience can follow — press <kbd>r</kbd> to toggle it off.
+
+1. **Compare** — three massing alternatives, criteria table, insight → *Frame for Review*
+2. **Frame for Review** — decision question, alternatives, criteria, recommended direction,
+   requested response → *Send to Board*
+3. **Board Review** — decision frame, feedback, agreement state → *Return rationale to site proposal*
+4. **Site Proposal with Rationale** — the Design intent panel: status, rationale, accepted
+   trade-offs, contributors, decision history
+
+> The decision travels with the site proposal, not the meeting.
 
 ---
 

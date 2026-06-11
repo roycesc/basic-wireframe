@@ -129,6 +129,12 @@
       return;
     }
 
+    /* r — toggle the presenter click ring */
+    if (e.key === "r") {
+      doc.body.classList.toggle("fw-presenter-off");
+      return;
+    }
+
     /* / — open command palette if the page has one */
     if (e.key === "/") {
       var pal = doc.querySelector("[data-fw-palette]");
@@ -140,6 +146,34 @@
       }
     }
   });
+
+  /* ---- Presenter click ring (toggle with `r`) ----
+     Flashes a red ring around the clicked control — or the cursor
+     point — so someone following a demo can see where you clicked. */
+  var RING_TARGETS = "a, button, input, select, textarea, summary, label, [role='button']";
+  doc.addEventListener("pointerdown", function (e) {
+    if (e.button !== 0) return;
+    if (doc.body.classList.contains("fw-presenter-off")) return;
+    var ring = doc.createElement("div");
+    ring.className = "fw-clickring";
+    var target = e.target.closest ? e.target.closest(RING_TARGETS) : null;
+    var pad = 4;
+    if (target) {
+      var r = target.getBoundingClientRect();
+      ring.style.left = (r.left - pad) + "px";
+      ring.style.top = (r.top - pad) + "px";
+      ring.style.width = (r.width + pad * 2) + "px";
+      ring.style.height = (r.height + pad * 2) + "px";
+    } else {
+      ring.style.left = (e.clientX - 20) + "px";
+      ring.style.top = (e.clientY - 20) + "px";
+      ring.style.width = "40px";
+      ring.style.height = "40px";
+    }
+    doc.body.appendChild(ring);
+    ring.addEventListener("animationend", function () { ring.remove(); });
+    setTimeout(function () { ring.remove(); }, 800); /* reduced-motion fallback */
+  }, true);
 
   /* ---- Gradient-legend range handles (posed fallback in markup) ---- */
   doc.querySelectorAll(".fw-legendbar__track").forEach(function (track) {
