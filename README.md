@@ -31,6 +31,20 @@ Demos cross-link: the module-switcher chip (top-left) jumps between Design / Com
 Board; the logo or project breadcrumb returns to the hub; the sun icon in the editor's
 Analyze row opens the analysis view.
 
+## Screenshots
+
+| | |
+|---|---|
+| **D-01 · Project hub**<br>[![Project hub](docs/screenshots/dashboard.jpg)](docs/screenshots/dashboard.jpg) | **D-02 · Design editor**<br>[![Design editor](docs/screenshots/editor.jpg)](docs/screenshots/editor.jpg) |
+| **D-03 · Sun-hours analysis**<br>[![Analysis](docs/screenshots/analysis.jpg)](docs/screenshots/analysis.jpg) | **D-04 · Compare**<br>[![Compare](docs/screenshots/compare.jpg)](docs/screenshots/compare.jpg) |
+| **D-05 · Board**<br>[![Board](docs/screenshots/board.jpg)](docs/screenshots/board.jpg) | **Style guide** (top section below; full page in 5 parts)<br>[![Style guide — cover & foundations](docs/screenshots/styleguide-1-of-5.jpg)](docs/screenshots/styleguide-1-of-5.jpg) |
+
+Full style guide capture: [section 1](docs/screenshots/styleguide-1-of-5.jpg) ·
+[section 2](docs/screenshots/styleguide-2-of-5.jpg) ·
+[section 3](docs/screenshots/styleguide-3-of-5.jpg) ·
+[section 4](docs/screenshots/styleguide-4-of-5.jpg) ·
+[section 5](docs/screenshots/styleguide-5-of-5.jpg)
+
 ## File map
 
 ```
