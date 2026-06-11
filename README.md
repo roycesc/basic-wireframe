@@ -42,6 +42,7 @@ css/styleguide.css   index.html-only documentation styles (sg-*)
 js/shared.js         optional enhancement: tabs, flyouts, modal, palette, legend drag, `g` grid
 assets/sprite.svg    CANONICAL icon symbols + SVG pattern defs
 demos/*.html         the five assembled screens
+docs/screenshots/    JPEG captures of the kit pages (style guide in 5 sections + 5 demos)
 screenshots/         reference captures of the real Autodesk Forma product (not part of the kit)
 ```
 
