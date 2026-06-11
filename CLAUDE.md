@@ -91,8 +91,8 @@ grep -nE '#[0-9a-fA-F]{3,8}' css/components.css css/app.css css/base.css css/sty
 **Stephen merges PRs himself** (sometimes from his phone — don't merge for him, don't
 be surprised if origin/main moves). Commit messages end with the Claude co-author
 footer. History: PR #1 reference screenshots (merged), PR #2 README gallery (merged),
-**PR #3 the prototype — OPEN** (branch `proto-compare-to-board`, commits: prototype +
-fw-steps, menu z-fix + Autodesk logo swap, presenter click ring, landing redirect).
+PR #3 the original 4-screen prototype (merged), **PR #4 the Board-first rebuild —
+OPEN** (branch `proto-compare-to-board`).
 
 ## The prototype ("From Compare to Board") — current design
 
